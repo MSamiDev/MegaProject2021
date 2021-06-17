@@ -359,3 +359,6 @@ class CreateCheckoutSessionView(View):
         })
 
             
+
+
+"""ugsoisdhcokdcdsicbuidbciujdocjdbcudbcisdocmlod """
