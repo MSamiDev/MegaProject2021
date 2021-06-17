@@ -357,8 +357,3 @@ class CreateCheckoutSessionView(View):
         return JsonResponse({
             'id': checkout_session.id
         })
-
-            
-
-
-"""ugsoisdhcokdcdsicbuidbciujdocjdbcudbcisdocmlod """
