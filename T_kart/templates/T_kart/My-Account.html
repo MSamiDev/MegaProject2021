@@ -1,0 +1,541 @@
+{% extends 'T_kart/layout.html' %}
+
+<!--*    title    --->
+{% block title %} Kart {% endblock %}
+
+<!--*    head    --->
+{% block head %} {%load static%} {% load cart %}
+
+<meta name="keywords" content="Wellcome to SaKar, Your Account Dashboard" />
+<meta name="description" content="" />
+<link rel="stylesheet" href="{% static 'CSS/nicepage.css' %}" media="screen" />
+<link
+  rel="stylesheet"
+  href="{% static 'CSS/My-Account.css' %}"
+  media="screen"
+/>
+<script
+  class="u-script"
+  type="text/javascript"
+  src="{% static 'JS/jquery.js' %}"
+  defer=""
+></script>
+<script
+  class="u-script"
+  type="text/javascript"
+  src="{% static 'JS/nicepage.js' %}"
+  defer=""
+></script>
+<link rel="icon" href="{% static 'images/favicon.png' %}" />
+<link
+  id="u-theme-google-font"
+  rel="stylesheet"
+  href="{% static 'CSS/fonts.css' %}"
+/>
+<link
+  id="u-page-google-font"
+  rel="stylesheet"
+  href="{% static 'CSS/My-Account-fonts.css' %}"
+/>
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Organization",
+    "name": "Sakar",
+    "url": "index.html",
+    "logo": "images/default-logo.png"
+  }
+</script>
+<meta property="og:title" content="My Acount" />
+<meta property="og:type" content="website" />
+<meta name="theme-color" content="#478ac9" />
+<link rel="canonical" href="index.html" />
+<meta property="og:url" content="index.html" />
+
+{% endblock %}
+
+<!--*   body     --->
+{%block body%}
+<!--   your Body starts here    --->
+
+<section class="u-clearfix u-lightbox u-section-1" id="sec-c205">
+  <div class="u-clearfix u-expanded-width u-layout-wrap u-layout-wrap-1">
+    <div class="u-layout">
+      <div class="u-layout-row">
+        <div
+          class="
+            u-align-left
+            u-container-style
+            u-layout-cell
+            u-size-30
+            u-layout-cell-1
+          "
+        >
+          <div class="u-container-layout u-valign-top-lg u-container-layout-1">
+            <div
+              class="u-custom-color-1 u-shape u-shape-circle u-shape-1"
+            ></div>
+            <!--               <div class="u-image u-image-circle u-image-1" alt=""  data-image-width="400" data-image-height="265"></div>
+ -->
+            <img
+              src="/media/{{customer.profile}}"
+              alt=""
+              style="
+                position: relative;
+                top: -300px;
+                object-fit: contain;
+                left: 50px;
+                height: 256px;
+                width: 300px;
+              "
+            />
+            <div class="u-shape u-shape-svg u-text-custom-color-2 u-shape-2">
+              <svg
+                class="u-svg-link"
+                preserveAspectRatio="none"
+                viewBox="0 0 160 50"
+              >
+                <use
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                  xlink:href="#svg-02b7"
+                ></use>
+              </svg>
+              <svg
+                class="u-svg-content"
+                viewBox="0 0 160 50"
+                x="0px"
+                y="0px"
+                id="svg-02b7"
+                style="enable-background: new 0 0 160 50"
+              >
+                <path
+                  d="M133,26.7c-13.9,9.7-25.8,9.7-39.8,0c-9.1-6.3-16.8-6.3-25.9,0c-13.8,9.6-25.1,9.6-38.9,0c-9.2-6.4-15.4-6.4-24.6,0L0,22
+	c11.2-7.8,20.6-8.1,32.2,0c11,7.6,19,8.5,31.3,0c11.6-8.1,22.4-7.7,33.5,0c11.4,8,20.3,8.3,32.2,0c11.6-8.1,19.2-8.1,30.8,0
+	l-3.8,4.7C146.9,20.2,142.3,20.2,133,26.7z M133,10.8c-13.9,9.7-25.8,9.7-39.8,0c-9.1-6.3-16.8-6.3-25.9,0
+	c-13.8,9.6-25.1,9.6-38.9,0c-9.2-6.4-15.4-6.4-24.6,0L0,6.1c11.2-7.8,20.6-8.1,32.2,0c11,7.6,19,8.5,31.3,0C75.1-2,85.9-1.6,97,6.1
+	c11.4,8,20.3,8.3,32.2,0C140.8-2,148.4-2,160,6.1l-3.8,4.7C146.9,4.3,142.3,4.3,133,10.8z M32.2,38c11,7.6,19,8.5,31.3,0
+	c11.6-8.1,22.4-7.7,33.5,0c11.4,8,20.3,8.3,32.2,0c11.6-8.1,19.2-8.1,30.8,0l-3.8,4.7c-9.3-6.5-13.9-6.5-23.3,0
+	c-13.9,9.7-25.8,9.7-39.8,0c-9.1-6.3-16.8-6.3-25.9,0c-13.8,9.6-25.1,9.6-38.9,0c-9.2-6.4-15.4-6.4-24.6,0L0,38
+	C11.2,30.2,20.6,29.9,32.2,38z"
+                ></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="u-container-style u-layout-cell u-size-30 u-layout-cell-2">
+          <div class="u-container-layout u-valign-middle u-container-layout-2">
+            <h1 class="u-align-center u-custom-font u-text u-text-1">
+              Wellcome &nbsp;{{customer.first_name}}
+              <br />
+            </h1>
+            <h2
+              class="
+                u-align-center u-custom-font u-font-montserrat u-text u-text-2
+              "
+            >
+              Your Account Dashboard
+            </h2>
+            <a
+              href="/t-kart/logout/"
+              class="
+                u-active-none
+                u-border-2
+                u-border-custom-color-1
+                u-border-hover-custom-color-3
+                u-btn
+                u-button-style
+                u-hover-none
+                u-none
+                u-text-active-palette-2-base
+                u-text-custom-color-2
+                u-text-hover-custom-color-2
+                u-btn-1
+              "
+              >Logout &gt;&gt;&gt;</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="
+      u-expanded-width-lg
+      u-expanded-width-md
+      u-expanded-width-sm
+      u-expanded-width-xl
+      u-tab-links-align-left
+      u-tabs
+      u-tabs-1
+    "
+  >
+    <ul class="u-tab-list u-unstyled u-tab-list-1" role="tablist">
+      <li class="u-tab-item" role="presentation">
+        <a
+          class="
+            active
+            u-border-2
+            u-border-active-custom-color-2
+            u-border-hover-grey-75
+            u-border-no-left
+            u-border-no-right
+            u-border-no-top
+            u-button-style
+            u-custom-font
+            u-font-montserrat
+            u-tab-link
+            u-text-active-custom-color-2
+            u-text-custom-color-3
+            u-text-hover-grey-75
+            u-tab-link-1
+          "
+          id="link-tab-6af4"
+          href="#tab-6af4"
+          role="tab"
+          aria-controls="tab-6af4"
+          aria-selected="true"
+          >Account Details</a
+        >
+      </li>
+      <li class="u-tab-item" role="presentation">
+        <a
+          class="
+            u-border-2
+            u-border-active-custom-color-2
+            u-border-hover-grey-75
+            u-border-no-left
+            u-border-no-right
+            u-border-no-top
+            u-button-style
+            u-custom-font
+            u-font-montserrat
+            u-tab-link
+            u-text-active-custom-color-2
+            u-text-custom-color-3
+            u-text-hover-grey-75
+            u-tab-link-2
+          "
+          id="link-tab-8744"
+          href="#tab-8744"
+          role="tab"
+          aria-controls="tab-8744"
+          aria-selected="false"
+          >Addresses</a
+        >
+      </li>
+      <li class="u-tab-item u-tab-item-3" role="presentation">
+        <a
+          class="
+            u-border-2
+            u-border-active-custom-color-2
+            u-border-hover-grey-75
+            u-border-no-left
+            u-border-no-right
+            u-border-no-top
+            u-button-style
+            u-custom-font
+            u-font-montserrat
+            u-tab-link
+            u-text-active-custom-color-2
+            u-text-custom-color-3
+            u-text-hover-grey-75
+            u-tab-link-3
+          "
+          id="link-tab-abcb"
+          href="#tab-abcb"
+          role="tab"
+          aria-controls="tab-abcb"
+          aria-selected="false"
+          >Oders</a
+        >
+      </li>
+      <li class="u-tab-item u-tab-item-4" role="presentation">
+        <a
+          class="
+            u-border-2
+            u-border-active-custom-color-2
+            u-border-hover-grey-75
+            u-border-no-left
+            u-border-no-right
+            u-border-no-top
+            u-button-style
+            u-custom-font
+            u-font-montserrat
+            u-tab-link
+            u-text-active-custom-color-2
+            u-text-custom-color-3
+            u-text-hover-grey-75
+            u-tab-link-4
+          "
+          id="link-tab-31c1"
+          href="#tab-31c1"
+          role="tab"
+          aria-controls="tab-31c1"
+          aria-selected="false"
+          >Payment Methods</a
+        >
+      </li>
+      <li class="u-tab-item u-tab-item-5" role="presentation">
+        <a
+          class="
+            u-border-2
+            u-border-active-custom-color-2
+            u-border-hover-grey-75
+            u-border-no-left
+            u-border-no-right
+            u-border-no-top
+            u-button-style
+            u-custom-font
+            u-font-montserrat
+            u-tab-link
+            u-text-active-custom-color-2
+            u-text-custom-color-3
+            u-text-hover-grey-75
+            u-tab-link-5
+          "
+          id="link-tab-e1c1"
+          href="#tab-e1c1"
+          role="tab"
+          aria-controls="tab-e1c1"
+          aria-selected="false"
+          >Downloads</a
+        >
+      </li>
+    </ul>
+    <div class="u-tab-content">
+      <div
+        class="
+          u-align-left-lg
+          u-align-left-md
+          u-align-left-sm
+          u-align-left-xl
+          u-container-style
+          u-custom-color-1
+          u-opacity
+          u-opacity-20
+          u-tab-active
+          u-tab-pane
+          u-tab-pane-1
+        "
+        id="tab-6af4"
+        role="tabpanel"
+        aria-labelledby="link-tab-6af4"
+      >
+        <div class="u-container-layout u-container-layout-3"></div>
+      </div>
+      <div
+        class="
+          u-container-style
+          u-custom-color-1
+          u-opacity
+          u-opacity-20
+          u-tab-pane
+          u-tab-pane-2
+        "
+        id="tab-8744"
+        role="tabpanel"
+        aria-labelledby="link-tab-8744"
+      >
+        <div class="u-container-layout u-container-layout-4"></div>
+      </div>
+      <div
+        class="
+          u-container-style
+          u-custom-color-1
+          u-opacity
+          u-opacity-20
+          u-tab-pane
+          u-tab-pane-3
+        "
+        id="tab-abcb"
+        role="tabpanel"
+        aria-labelledby="link-tab-abcb"
+      >
+        <div class="u-container-layout u-container-layout-5">
+          <div class="u-align-center u-table u-table-responsive u-table-1">
+            <table class="u-table-entity">
+              <colgroup>
+                <col width="12.2%" />
+                <col width="29.7%" />
+                <col width="7.7%" />
+                <col width="30.4%" />
+                <col width="20%" />
+              </colgroup>
+              <thead class="u-custom-font u-table-header u-table-header-1">
+                <tr style="height: 129px">
+                  <th
+                    class="
+                      u-border-3
+                      u-border-grey-dark-1
+                      u-border-no-left
+                      u-border-no-right
+                      u-border-no-top
+                      u-table-cell
+                      u-table-cell-1
+                    "
+                  >
+                    Oder ID
+                  </th>
+                  <th
+                    class="
+                      u-border-3
+                      u-border-grey-dark-1
+                      u-border-no-left
+                      u-border-no-right
+                      u-border-no-top
+                      u-table-cell
+                      u-table-cell-2
+                    "
+                  >
+                    Date
+                  </th>
+                  <th
+                    class="
+                      u-border-3
+                      u-border-grey-dark-1
+                      u-border-no-left
+                      u-border-no-right
+                      u-border-no-top
+                      u-table-cell
+                      u-table-cell-3
+                    "
+                  >
+                    Status
+                  </th>
+                  <th
+                    class="
+                      u-border-3
+                      u-border-grey-dark-1
+                      u-border-no-left
+                      u-border-no-right
+                      u-border-no-top
+                      u-table-cell
+                      u-table-cell-5
+                    "
+                  >
+                    Product price
+                  </th>
+                  <th
+                    class="
+                      u-border-3
+                      u-border-grey-dark-1
+                      u-border-no-left
+                      u-border-no-right
+                      u-border-no-top
+                      u-table-cell
+                      u-table-cell-5
+                    "
+                  >
+                    Qty
+                  </th>
+                  <th
+                    class="
+                      u-border-3
+                      u-border-grey-dark-1
+                      u-border-no-left
+                      u-border-no-right
+                      u-border-no-top
+                      u-table-cell
+                      u-table-cell-4
+                    "
+                  >
+                    Total
+                  </th>
+                  <th
+                    class="
+                      u-border-3
+                      u-border-grey-dark-1
+                      u-border-no-left
+                      u-border-no-right
+                      u-border-no-top
+                      u-table-cell
+                      u-table-cell-5
+                    "
+                  >
+                    Product Image
+                  </th>
+                  
+                </tr>
+              </thead>
+              <tbody
+                class="
+                  u-custom-font u-font-montserrat u-table-body u-table-body-1
+                "
+              >
+
+                {% for order in orders %}
+                <tr style="height: 137px">
+                  <td class="u-table-cell">#{{order.id}}</td>
+                  <td class="u-table-cell">{{order.date}}</td>
+                  <td class="u-table-cell">{% if order.status %} Order Completed {% else %}  Order Failed {% endif %}</td>
+                  <td class="u-table-cell">₹{{order.price}}</td>
+                  <td class="u-table-cell">{{order.quantity}}Qty</td>
+                  <td class="u-table-cell">₹{{order.total_price}}</td>
+                  <td class="u-table-cell" style="background: white;" > <img src="/media/{{order.product.image}}" style="height: 100px;" alt="Product Image"> </td>
+                </tr>
+                {% endfor %}
+
+                <tr style="height: 129px">
+                  <td class="u-table-cell"></td>
+                  <td class="u-table-cell"></td>
+                  <td class="u-table-cell"></td>
+                  <td class="u-table-cell"></td>
+                  <td class="u-table-cell"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div
+        class="
+          u-align-left-lg
+          u-align-left-md
+          u-align-left-sm
+          u-align-left-xl
+          u-container-style
+          u-custom-color-1
+          u-opacity
+          u-opacity-20
+          u-tab-pane
+          u-tab-pane-4
+        "
+        id="tab-31c1"
+        role="tabpanel"
+        aria-labelledby="link-tab-31c1"
+      >
+        <div class="u-container-layout u-container-layout-6"></div>
+      </div>
+      <div
+        class="
+          u-align-left-lg
+          u-align-left-md
+          u-align-left-sm
+          u-align-left-xl
+          u-container-style
+          u-custom-color-1
+          u-opacity
+          u-opacity-20
+          u-tab-pane
+          u-tab-pane-5
+        "
+        id="tab-e1c1"
+        role="tabpanel"
+        aria-labelledby="link-tab-e1c1"
+      >
+        <div class="u-container-layout u-container-layout-7"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
+
+<!--*   script     --->
+{% block script %}
+<!--   your Body starts here    --->
+
+<script></script>
+
+{% endblock %}

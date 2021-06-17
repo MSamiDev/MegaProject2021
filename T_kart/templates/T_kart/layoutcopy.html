@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+  {%load static%}
+
+  <head>
+    {% block head %} {% endblock %}
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Source+Code+Pro:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/5bbe7e22f0.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <link rel="stylesheet" href="{% static 'CSS/styles.css' %}" />
+    <title>{% block title %} {% endblock %}</title>
+  </head>
+
+  <body>
+    <div>
+      <nav class="navigation">
+        <div>
+          <a href="#"
+            ><img
+              src="{% static 'images/favicon.png' %}"
+              alt="LOGO"
+              class="logo-img"
+          /></a>
+        </div>
+
+        <label for="check" class="hamberger">
+          <input type="checkbox" id="check" />
+          <span class="hambar"></span>
+          <span class="hambar"></span>
+          <span class="hambar"></span>
+        </label>
+      </nav>
+
+      <div class="nav-list">
+        <div class="full-page-menu">
+          <div class="hiro-nav-popup-modal">
+            <div class="hiro-nav-popup-modal-content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6 menu-wrapper">
+                            <ul class="nav hiro-main-nav">
+                                <li class="nav-item">
+                                    <a href="/" class="nav-link">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/about-us" class="nav-link">About Us</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="contact-us" class="nav-link">Contact Us</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#works" class="nav-link">Works</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/t-kart" class="nav-link">T-Kart</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6 blog-posts text-white">
+                            <h5 class="popup-blog-headng">Blog</h5>
+                            <div class="media mb-4">
+                                <img src="assets/images/Blog_small2.jpg" alt="blog" width="86px" class="img-fluid mr-4">
+                                <div class="media-body align-self-end">
+                                    <h5 class="popup-blog-post-title">Ambitious <br> designs</h5>
+                                </div>
+                            </div>
+                            <div class="media mb-4">
+                                <img src="assets/images/Blog_small1.jpg" alt="blog" width="86px" class="img-fluid mr-4">
+                                <div class="media-body align-self-end">
+                                    <h5 class="popup-blog-post-title">The Collection <br> Cover Archive</h5>
+                                </div>
+                            </div>
+                            <p><a href="blog.html" class="text-white link-hover-fx text-decoration-none" class="font-weight-medium">View more</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+
+    {% block body%} {% endblock %}
+
+    <footer class="footer">
+      <div>
+        <div class="footer-box1">
+          <h1>
+            T-Kart
+            <small
+              style="
+                font-size: 20px;
+                position: relative;
+                left: -27px;
+                bottom: -10px;
+                letter-spacing: 1px;
+                font-family: 'montserrat';
+              "
+              >by SaKar</small
+            >
+          </h1>
+          <ul class="footer-list">
+            <li class="footer-item">
+              <a href="#" class="footer-list-item">Home</a>
+            </li>
+            <li class="footer-item">
+              <a href="#" class="footer-list-item">T-Kart</a>
+            </li>
+            <li class="footer-item">
+              <a href="#" class="footer-list-item">About Us</a>
+            </li>
+            <li class="footer-item">
+              <a href="#" class="footer-list-item">Contact Us</a>
+            </li>
+            <li class="footer-item">
+              <a href="#" class="footer-list-item">Blog</a>
+            </li>
+          </ul>
+          <div class="social-links">
+            <a href="#" class="social-icon"
+              ><i class="fab fa-facebook-f fa-lg"></i
+            ></a>
+            <a href="#" class="social-icon"
+              ><i class="fab fa-instagram fa-lg"></i
+            ></a>
+            <a href="#" class="social-icon"
+              ><i class="fab fa-twitter fa-lg"></i
+            ></a>
+          </div>
+        </div>
+        <div class="footer-box2">
+          <small class="copyright">
+            Copyright &copy;
+            <script>
+              document.write(new Date().getFullYear());
+            </script>
+            All rights reserved
+          </small>
+        </div>
+      </div>
+    </footer>
+
+    <!--/back to top-->
+    <span
+      style="
+        height: 50px;
+        width: 50px;
+        margin-left: 0px;
+        margin-right: auto;
+        margin-top: 0px;
+        background-image: none;
+        right: 20px;
+        bottom: 20px;
+        color: rgb(55, 27, 177) !important;
+      "
+      class="
+        u-back-to-top
+        u-custom-color-1
+        u-icon
+        u-icon-rectangle
+        u-opacity
+        u-opacity-80
+        u-spacing-15
+      "
+      data-href="#"
+      ><svg
+        class="u-svg-link"
+        preserveAspectRatio="xMidYMin slice"
+        viewBox="0 0 490.544 490.544"
+      >
+        <use
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xlink:href="#svg-482b"
+        ></use>
+      </svg>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        version="1.1"
+        xml:space="preserve"
+        class="u-svg-content"
+        viewBox="0 0 490.544 490.544"
+        x="0px"
+        y="0px"
+        id="svg-482b"
+        style="enable-background: new 0 0 490.544 490.544"
+        data-color="rgb(55, 27, 177)"
+      >
+        <g>
+          <path
+            style="fill: #607d8b"
+            d="M18.098,274.151L245.213,47.015l227.115,227.136c4.237,4.093,10.99,3.975,15.083-0.262   c3.993-4.134,3.993-10.687,0-14.821L252.744,24.401c-4.165-4.164-10.917-4.164-15.083,0L2.994,259.068   c-4.093,4.237-3.975,10.99,0.262,15.083c4.134,3.992,10.687,3.992,14.82,0H18.098z"
+          ></path>
+          <path
+            style="fill: #607d8b"
+            d="M252.765,216.38c-4.165-4.164-10.917-4.164-15.083,0L3.016,451.047   c-4.093,4.237-3.976,10.99,0.262,15.083c4.134,3.993,10.687,3.993,14.821,0l227.115-227.115l227.115,227.136   c4.237,4.093,10.99,3.976,15.083-0.261c3.993-4.134,3.993-10.688,0-14.821L252.765,216.38z"
+          ></path>
+        </g>
+        <path
+          d="M479.88,277.266c-2.831,0.005-5.548-1.115-7.552-3.115L245.213,47.015L18.098,274.151  c-4.237,4.093-10.99,3.975-15.083-0.262c-3.992-4.134-3.992-10.687,0-14.82L237.682,24.401c4.165-4.164,10.917-4.164,15.083,0  l234.667,234.667c4.159,4.172,4.148,10.926-0.024,15.085C485.409,276.146,482.702,277.265,479.88,277.266z"
+        ></path>
+        <path
+          d="M479.88,469.266c-2.831,0.005-5.548-1.115-7.552-3.115L245.213,239.015L18.098,466.151  c-4.237,4.093-10.99,3.976-15.083-0.262c-3.993-4.134-3.993-10.687,0-14.821l234.667-234.667c4.165-4.164,10.917-4.164,15.083,0  l234.667,234.667c4.159,4.172,4.148,10.926-0.024,15.085C485.409,468.146,482.702,469.265,479.88,469.266z"
+        ></path>
+      </svg>
+    </span>
+
+    <script src="{% static 'JS/app.js'%}"></script>
+  </body>
+</html>

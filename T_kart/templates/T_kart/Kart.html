@@ -1,0 +1,508 @@
+{% extends 'T_kart/layout.html' %}
+
+<!--*    title    --->
+{% block title %} Kart {% endblock %}
+
+<!--*    head    --->
+{% block head %} {%load static%} {% load cart %}
+
+<meta name="keywords" content="Product Name ( )" />
+<meta name="description" content="" />
+<link rel="stylesheet" href="{% static 'CSS/nicepage.css' %}" media="screen" />
+<link rel="stylesheet" href="{% static 'CSS/Kart.css' %}" media="screen" />
+<script
+  class="u-script"
+  type="text/javascript"
+  src="{% static 'JS/jquery.js' %}"
+  defer=""
+></script>
+<script
+  class="u-script"
+  type="text/javascript"
+  src="{% static 'JS/nicepage.js' %}"
+  defer=""
+></script>
+<meta name="generator" content="Nicepage 3.16.1, nicepage.com" />
+<link rel="icon" href="{% static 'images/favicon.png' %}" />
+<link
+  id="u-theme-google-font"
+  rel="stylesheet"
+  href="{% static 'CSS/fonts.css' %}"
+/>
+<link
+  id="u-page-google-font"
+  rel="stylesheet"
+  href="{% static 'CSS/Kart-fonts.css' %}"
+/>
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Organization",
+    "name": "Sakar",
+    "url": "index.html",
+    "logo": "images/default-logo.png"
+  }
+</script>
+<meta property="og:title" content="Kart" />
+<meta property="og:type" content="website" />
+<meta name="theme-color" content="#478ac9" />
+<link rel="canonical" href="index.html" />
+<meta property="og:url" content="index.html" />
+
+{% endblock %}
+
+<!--*   body     --->
+{%block body%}
+<!--   your Body starts here    --->
+
+<section class="u-clearfix u-section-1" id="sec-d1ef">
+  <div class="u-clearfix u-sheet u-sheet-1">
+    <div
+      class="u-clearfix u-expanded-width u-layout-wrap u-white u-layout-wrap-1"
+    >
+      <div class="u-gutter-0 u-layout">
+        {% if products %} 
+        
+        {% for product in products %}
+
+        <div class="u-layout-row" id="{{product.id}}">
+          <div
+            class="
+              u-align-left
+              u-container-style
+              u-layout-cell
+              u-shape-rectangle
+              u-size-13
+              u-size-60-md
+              u-layout-cell-1
+            "
+          >
+            <div
+              class="u-container-layout u-valign-middle u-container-layout-1"
+            >
+              <img
+                class="u-expanded-width u-image u-image-default u-image-1"
+                src="/media/{{product.image}}"
+                alt=""
+                data-image-width="400"
+                data-image-height="265"
+                style="object-fit: contain"
+              />
+              
+              
+              <form action="/t-kart/kart/" method="post">
+                {% csrf_token %}
+                <input type="text" hidden name="product" value="{{product.id}}">
+                <input type="text" hidden name="removeKart" value="True">
+              
+              <input
+                class="
+                  u-active-none
+                  u-align-center
+                  u-border-2
+                  u-border-custom-color-1
+                  u-border-hover-custom-color-3
+                  u-btn
+                  u-button-style
+                  u-custom-font
+                  u-hover-none
+                  u-none
+                  u-text-custom-color-2
+                  u-text-hover-custom-color-2
+                  u-btn-1
+                "
+                type="submit"
+                value="Remove from Kart"
+                ></input
+              >
+            </form>
+
+
+            </div>
+          </div>
+          <div
+            class="
+              u-container-style
+              u-layout-cell
+              u-size-17-lg
+              u-size-17-sm
+              u-size-17-xs
+              u-size-18-xl
+              u-size-60-md
+              u-layout-cell-2
+            "
+          >
+            <div
+              class="u-container-layout u-valign-middle u-container-layout-2"
+            >
+              <h5
+                class="
+                  u-align-center-md
+                  u-align-center-sm
+                  u-align-center-xs
+                  u-text
+                  u-text-default-lg
+                  u-text-default-xl
+                  u-text-1
+                "
+              >
+                {{product.product_name}}
+              </h5>
+            </div>
+          </div>
+          <div
+            class="
+              u-container-style
+              u-layout-cell
+              u-size-10
+              u-size-60-md
+              u-layout-cell-3
+            "
+          >
+            <div
+              class="u-container-layout u-valign-middle u-container-layout-3"
+            >
+              <h5
+                class="
+                  u-align-center-md
+                  u-align-center-sm
+                  u-align-center-xs
+                  u-align-left-lg
+                  u-align-left-xl
+                  u-text
+                  u-text-2
+                "
+              >
+                ₹{{product.price|floatformat:2}}
+              </h5>
+            </div>
+          </div>
+          <div
+            class="
+              u-container-style
+              u-layout-cell
+              u-size-10-xl
+              u-size-60-md
+              u-size-9-lg
+              u-size-9-sm
+              u-size-9-xs
+              u-layout-cell-4
+            "
+          >
+            <div
+              class="u-container-layout u-valign-middle u-container-layout-4"
+            >
+
+
+
+
+
+
+
+
+
+
+
+
+            <div style="display: flex; align-items: center; justify-content: center;  ">
+              <form action="/t-kart/kart/#{{product.id}}" method="post">
+                {% csrf_token %}
+                <input type="text" hidden name="product" value="{{product.id}}">
+                <input type="text" hidden name="remove" value="True">
+                <input id='minus'  type="submit"
+                class='u-button-style u-custom-color-1 u-text-hover-custom-color-1 minus'
+                style="padding: 5px; width: 30px;" value="-"></input>
+              </form>
+              <span id='val' class="u-custom-font" style="margin: 7px;">{{ product|cart_product_qty:request.session.kart}} Qty</span>
+              <form action="/t-kart/kart/#{{product.id}}" method="post">
+                {% csrf_token %}
+                <input type="text" hidden name="product" value="{{product.id}}">
+                <input id='plus' type="submit"
+                  class='  u-button-style u-custom-color-1 u-text-hover-custom-color-1 plus'
+                  style="padding: 5px; width: 30px; " value="+"></input>
+              </form>
+            </div>
+
+
+
+
+
+
+
+
+                        <!-- 
+                                      <h5
+                                        class="
+                                          u-align-center-md
+                                          u-align-center-sm
+                                          u-align-center-xs
+                                          u-align-left-lg
+                                          u-align-left-xl
+                                          u-text
+                                          u-text-3
+                                        "
+                                      >
+                                        {{product|cart_product_qty:request.session.kart}} Qty
+                                      </h5>
+                        -->
+
+
+
+
+
+
+
+
+
+            </div>
+          </div>
+          <div
+            class="
+              u-container-style
+              u-layout-cell
+              u-size-10-lg
+              u-size-10-sm
+              u-size-10-xs
+              u-size-60-md
+              u-size-9-xl
+              u-layout-cell-5
+            "
+          >
+            <div
+              class="u-container-layout u-valign-middle u-container-layout-5"
+            >
+              <h3
+                class="
+                  u-align-center-md
+                  u-align-center-sm
+                  u-align-center-xs
+                  u-align-right-lg
+                  u-align-right-xl
+                  u-text
+                  u-text-4
+                "
+              >
+                ₹{{product|price_total:request.session.kart|floatformat:2}}
+              </h3>
+            </div>
+          </div>
+        </div>
+
+        {% endfor %}
+      </div>
+    </div>
+    <div class="u-clearfix u-expanded-width u-layout-wrap u-layout-wrap-2">
+      <div class="u-gutter-0 u-layout">
+        <div class="u-layout-col">
+          <div class="u-size-30">
+            <div class="u-layout-col">
+              <div
+                class="
+                  u-align-right
+                  u-container-style
+                  u-layout-cell
+                  u-size-60
+                  u-layout-cell-6
+                "
+              >
+                <div
+                  class="
+                    u-container-layout u-valign-middle u-container-layout-6
+                  "
+                >
+                  <div
+                    class="
+                      u-expanded-width u-table u-table-responsive u-table-1
+                    "
+                  >
+                    <table class="u-table-entity">
+                      <colgroup>
+                        <col width="50%" />
+                        <col width="50%" />
+                      </colgroup>
+                      <tbody
+                        class="
+                          u-align-left
+                          u-custom-font
+                          u-font-montserrat
+                          u-table-body
+                          u-table-body-1
+                        "
+                      >
+                        <tr style="height: 89px">
+                          <td
+                            class="
+                              u-border-2
+                              u-border-grey-75
+                              u-border-no-left
+                              u-border-no-right
+                              u-table-cell
+                            "
+                          >
+                            Subtotal
+                          </td>
+                          <td
+                            class="
+                              u-border-2
+                              u-border-grey-75
+                              u-border-no-left
+                              u-border-no-right
+                              u-table-cell
+                            "
+                          >
+                            ₹{{products|total_cart_price:request.session.kart|floatformat:2}}
+                          </td>
+                        </tr>
+                        <tr style="height: 94px">
+                          <td
+                            class="
+                              u-border-2
+                              u-border-grey-75
+                              u-border-no-left
+                              u-border-no-right
+                              u-table-cell
+                            "
+                          >
+                            Shipping
+                          </td>
+                          <td
+                            class="
+                              u-border-2
+                              u-border-grey-75
+                              u-border-no-left
+                              u-border-no-right
+                              u-table-cell
+                            "
+                          >
+                            ₹0.00
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="u-size-30">
+            <div class="u-layout-row">
+              <div
+                class="
+                  u-align-center-xs
+                  u-container-style
+                  u-layout-cell
+                  u-size-30
+                  u-layout-cell-7
+                "
+              >
+                <div
+                  class="
+                    u-container-layout u-valign-middle u-container-layout-7
+                  "
+                >
+                  <h1
+                    class="
+                      u-align-left-lg
+                      u-align-left-md
+                      u-align-left-sm
+                      u-align-left-xl
+                      u-custom-font
+                      u-font-montserrat
+                      u-text
+                      u-text-5
+                    "
+                  >
+                    Total
+                  </h1>
+                </div>
+              </div>
+              <div
+                class="
+                  u-container-style u-layout-cell u-size-30 u-layout-cell-8
+                "
+              >
+                <div
+                  class="
+                    u-container-layout u-valign-middle u-container-layout-8
+                  "
+                >
+                  <h1
+                    class="
+                      u-align-center-xs
+                      u-align-right-lg
+                      u-align-right-md
+                      u-align-right-sm
+                      u-align-right-xl
+                      u-custom-font
+                      u-font-montserrat
+                      u-text
+                      u-text-custom-color-2
+                      u-text-6
+                    "
+                  >
+                    ₹{{products|total_cart_price:request.session.kart|floatformat:2}}
+                  </h1>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="
+        u-container-style
+        u-expanded-width
+        u-group
+        u-opacity
+        u-opacity-5
+        u-shape-rectangle
+        u-group-1
+      "
+    >
+      <div
+        class="
+          u-container-layout
+          u-valign-middle-lg
+          u-valign-middle-md
+          u-valign-middle-sm
+          u-valign-middle-xs
+          u-container-layout-9
+        "
+      >
+        <a
+          href="/t-kart/checkout/"
+          class="
+            u-align-center
+            u-btn
+            u-button-style
+            u-custom-color-1
+            u-hover-custom-color-2
+            u-text-custom-color-3
+            u-text-hover-custom-color-1
+            u-btn-2
+          "
+          >Checkout</a
+        >
+      </div>
+    </div>
+  </div>
+
+  {% else %}
+
+  <div style="justify-content: center">
+    <h1>Opps...! nothing in your Kart</h1>
+    <a href="/t-kart/"><h2 style="color: #05f4b7">continue to Shop >>></h2></a>
+  </div>
+
+  {% endif %}
+</section>
+
+{% endblock %}
+
+<!--*   script     --->
+{% block script %}
+<!--   your Body starts here    --->
+
+{% endblock %}

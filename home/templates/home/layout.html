@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  {%load static%}
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Source+Code+Pro:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/5bbe7e22f0.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <link rel="stylesheet" href="{% static 'CSS/style.css' %}" />
+    <title>SaKar | {% block title %} {% endblock %}</title>
+    {% block head %} {% endblock %}
+  </head>
+
+  <body>
+    <div>
+      <nav class="navigation">
+        <div>
+          <a href="/"
+            ><img src="{% static 'images/favicon.png' %}" alt="LOGO" class="logo-img"cx   ,  ,
+          /></a>
+        </div>
+
+        <label for="check" class="hamberger">
+          <input type="checkbox" id="check" />
+          <span class="hambar"></span>
+          <span class="hambar"></span>
+          <span class="hambar"></span>
+        </label>
+      </nav>
+
+      <div class="nav-list">
+        <div class="full-page-menu">
+
+          <ul class="menu-list">
+            <li class="nav-item"><a href="/" class="list-item">Home</a></li>
+            <li class="nav-item">
+              <a href="/t-kart" class="list-item">T-Kart</a>
+            </li>
+            <li class="nav-item">
+              <a href="/about-us" class="list-item">About Us</a>
+            </li>
+            <li class="nav-item">
+              <a href="/contact-us" class="list-item">Contact Us</a>
+            </li>
+            <li class="nav-item"><a href="/blog" class="list-item">Blog</a></li>
+          </ul>
+          <div class="full-page-t-kart-btn"><a href="/t-kart" class="T-Kart-menu"> Shop on T-Kart <small>by SaKar</small> >>></a></div>
+        </div>
+
+      </div>
+    </div>
+
+    {% block body%} {% endblock %}
+
+    <footer class="footer">
+      <div>
+        <div class="footer-box1">
+          <h1>SaKar</h1>
+          <ul class="footer-list">
+            <li class="footer-item">
+              <a href="#" class="footer-list-item">Home</a>
+            </li>
+            <li class="footer-item">
+              <a href="#" class="footer-list-item">Shop</a>
+            </li>
+            <li class="footer-item">
+              <a href="#" class="footer-list-item">About Us</a>
+            </li>
+            <li class="footer-item">
+              <a href="#" class="footer-list-item">Contact Us</a>
+            </li>
+            <li class="footer-item">
+              <a href="#" class="footer-list-item">Blog</a>
+            </li>
+          </ul>
+          <div class="social-links">
+            <a href="#" class="social-icon"
+              ><i class="fab fa-facebook-f fa-lg"></i
+            ></a>
+            <a href="#" class="social-icon"
+              ><i class="fab fa-instagram fa-lg"></i
+            ></a>
+            <a href="#" class="social-icon"
+              ><i class="fab fa-twitter fa-lg"></i
+            ></a>
+          </div>
+        </div>
+        <div class="footer-box2">
+          <small class="copyright">
+            Copyright &copy;
+            <script>
+              document.write(new Date().getFullYear());
+            </script>
+            All rights reserved
+          </small>
+        </div>
+      </div>
+    </footer>
+
+    <script src="{% static 'JS/app.js'%}"></script>
+    <!-- jQuery first -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+
+    {% block script %} {% endblock %}
+  </body>
+</html>

@@ -1,0 +1,856 @@
+{% extends 'T_kart/layout.html' %}
+
+<!--*    title    --->
+{% block title %} Checkout {% endblock %}
+
+<!--*    head    --->
+{% block head %} {%load static%} {% load cart %}
+
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link rel="stylesheet" href="{% static 'CSS/nicepage.css' %}" media="screen" />
+<link rel="stylesheet" href="{% static 'CSS/Checkout.css' %}" media="screen" />
+<script src="https://js.stripe.com/v3/"></script>
+<script
+  class="u-script"
+  type="text/javascript"
+  src="{% static 'JS/jquery.js' %}"
+  defer=""
+></script>
+<link rel="icon" href="{% static 'images/favicon.png' %}" />
+<link
+  id="u-theme-google-font"
+  rel="stylesheet"
+  href="{% static 'CSS/fonts.css' %}"
+/>
+<link
+  id="u-page-google-font"
+  rel="stylesheet"
+  href="{% static 'CSS/Checkout-fonts.css' %}"
+/>
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Organization",
+    "name": "Sakar",
+    "url": "index.html",
+    "logo": "images/default-logo.png"
+  }
+</script>
+<meta property="og:title" content="Checkout" />
+<meta property="og:type" content="website" />
+<meta name="theme-color" content="#478ac9" />
+<link rel="canonical" href="index.html" />
+<meta property="og:url" content="index.html" />
+
+<script src="https://js.stripe.com/v3/"></script>
+
+<style>
+
+</style>
+
+
+
+
+
+{% endblock %}
+
+<!--*   body     --->
+{%block body%}
+<!--   your Body starts here    --->
+
+<section class="u-clearfix u-section-1" id="sec-7488">
+  <div class="u-clearfix u-sheet u-sheet-1">
+    <div class="u-clearfix u-expanded-width u-layout-wrap u-layout-wrap-1">
+      <div class="u-layout">
+        <div class="u-layout-row">
+          <div
+            class="
+              u-container-style
+              u-layout-cell
+              u-palette-5-light-3
+              u-radius-7
+              u-size-24
+              u-layout-cell-1
+            "
+          >
+            <div class="u-container-layout u-container-layout-1">
+              <a
+                href="/t-kart/kart"
+                class="
+                  u-active-none
+                  u-align-left
+                  u-border-3
+                  u-border-active-palette-2-dark-1
+                  u-border-custom-color-1
+                  u-border-hover-custom-color-3
+                  u-btn
+                  u-button-style
+                  u-hover-none
+                  u-none
+                  u-text-custom-color-2
+                  u-text-hover-custom-color-1
+                  u-btn-1
+                "
+                ><span class="u-icon u-icon-1"
+                  ><svg
+                    class="u-svg-content"
+                    viewBox="0 0 490.787 490.787"
+                    x="0px"
+                    y="0px"
+                    style="width: 1em; height: 1em"
+                  >
+                    <path
+                      style="fill: #f44336"
+                      d="M362.671,490.787c-2.831,0.005-5.548-1.115-7.552-3.115L120.452,253.006  c-4.164-4.165-4.164-10.917,0-15.083L355.119,3.256c4.093-4.237,10.845-4.354,15.083-0.262c4.237,4.093,4.354,10.845,0.262,15.083  c-0.086,0.089-0.173,0.176-0.262,0.262L143.087,245.454l227.136,227.115c4.171,4.16,4.179,10.914,0.019,15.085  C368.236,489.664,365.511,490.792,362.671,490.787z"
+                    ></path>
+                    <path
+                      d="M362.671,490.787c-2.831,0.005-5.548-1.115-7.552-3.115L120.452,253.006c-4.164-4.165-4.164-10.917,0-15.083L355.119,3.256  c4.093-4.237,10.845-4.354,15.083-0.262c4.237,4.093,4.354,10.845,0.262,15.083c-0.086,0.089-0.173,0.176-0.262,0.262  L143.087,245.454l227.136,227.115c4.171,4.16,4.179,10.914,0.019,15.085C368.236,489.664,365.511,490.792,362.671,490.787z"
+                    ></path></svg>
+                    <img/></span
+                >&nbsp;back to Kart
+              </a>
+              <h4 class="u-text u-text-1">Product</h4>
+              <h4 class="u-align-right u-text u-text-2">Subtotal</h4>
+              <div
+                class="
+                  u-expanded-width-lg
+                  u-expanded-width-md
+                  u-expanded-width-sm
+                  u-expanded-width-xs
+                  u-table
+                  u-table-responsive
+                  u-table-1
+                "
+              >
+                <table class="u-table-entity">
+                  <colgroup>
+                    <col width="75.4%" />
+                    <col width="24.6%" />
+                  </colgroup>
+                  <tbody class="u-custom-font u-font-montserrat u-table-body">
+                    {% for product in products %}
+
+                    <tr style="height: 96px">
+                      <td
+                        class="
+                          u-border-2
+                          u-border-grey-dark-1
+                          u-border-no-left
+                          u-border-no-right
+                          u-custom-font
+                          u-font-montserrat
+                          u-table-cell
+                          u-table-cell-1
+                        "
+                      >
+                        {{product.product_name}}&nbsp;
+                        <span style="font-weight: 700"
+                          >x
+                          {{product|cart_product_qty:request.session.kart}}</span
+                        >
+                      </td>
+                      <td
+                        class="
+                          u-border-2
+                          u-border-grey-dark-1
+                          u-border-no-left
+                          u-border-no-right
+                          u-table-cell
+                          u-table-cell-2
+                        "
+                      >
+                        ₹{{product|price_total:request.session.kart|floatformat:2}}
+                      </td>
+                    </tr>
+
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+              <h4 class="u-align-left u-text u-text-3">Shipping</h4>
+              <h4 class="u-align-right u-text u-text-4">$0.00<br /></h4>
+              <h3 class="u-align-left u-text u-text-5">Total</h3>
+              <h3 class="u-align-right u-text u-text-6">
+                ${{products|total_cart_price:request.session.kart|floatformat:2}}<br />
+              </h3>
+              <p class="u-align-left u-text u-text-7">
+                Your personal data will be used to process your order, support
+                your experience throughout this website, and for other purposes
+                described in our&nbsp;<a
+                  href="https://sanjeri.com/privacy-policy/"
+                  class="
+                    u-active-none
+                    u-border-none
+                    u-btn
+                    u-button-style
+                    u-hover-none
+                    u-none
+                    u-text-palette-1-base
+                    woocommerce-privacy-policy-link
+                    u-btn-2
+                  "
+                  target="_blank"
+                  >privacy policy</a
+                >.
+              </p>
+            </div>
+          </div>
+          <div
+            class="
+              u-container-style
+              u-layout-cell
+              u-shape-round
+              u-size-36
+              u-layout-cell-2
+            "
+          >
+            <div class="u-container-layout u-valign-top u-container-layout-2">
+              <div class="u-form u-form-1">
+                <form
+                  action="/t-kart/checkout/"
+                  method="POST"
+                  class="
+                    u-clearfix u-form-spacing-30 u-form-vertical u-inner-form
+                  "
+                  style="padding: 10px"
+                  source="custom"
+                  name="Shipping information"
+                >
+                  {% csrf_token %}
+                  <div
+                    class="u-form-group u-form-name u-form-partition-factor-2"
+                  >
+                    <label
+                      for="name-be7f"
+                      class="u-custom-font u-label u-label-1"
+                      >First name *</label
+                    >
+                    <input
+                      type="text"
+                      placeholder="Enter your first Name"
+                      id="name-be7f"
+                      name="firstname"
+                      class="
+                        u-border-1
+                        u-border-palette-5-base
+                        u-custom-font
+                        u-font-montserrat
+                        u-input
+                        u-input-rectangle
+                        u-white
+                        u-input-1
+                      "
+                      required=""
+                      autofocus="autofocus"
+                    />
+                  </div>
+                  <div
+                    class="
+                      u-form-group u-form-partition-factor-2 u-form-group-2
+                    "
+                  >
+                    <label
+                      for="text-b6d4"
+                      class="u-custom-font u-label u-label-2"
+                      >Last name *</label
+                    >
+                    <input
+                      type="text"
+                      placeholder="Enter your first Name"
+                      id="text-b6d4"
+                      name="lastname"
+                      class="
+                        u-border-1
+                        u-border-palette-5-base
+                        u-custom-font
+                        u-font-montserrat
+                        u-input
+                        u-input-rectangle
+                        u-white
+                        u-input-2
+                      "
+                      required="required"
+                    />
+                  </div>
+                  <div class="u-form-group u-form-group-3">
+                    <label
+                      for="text-f90b"
+                      class="u-custom-font u-label u-label-3"
+                      >Company name (optional)</label
+                    >
+                    <input
+                      type="text"
+                      placeholder="your Company Name"
+                      id="text-f90b"
+                      name="companyname"
+                      class="
+                        u-border-1
+                        u-border-palette-5-base
+                        u-custom-font
+                        u-font-montserrat
+                        u-input
+                        u-input-rectangle
+                        u-white
+                        u-input-3
+                      "
+                    />
+                  </div>
+                  <div class="u-form-group u-form-select u-form-group-4">
+                    <label
+                      for="select-49cf"
+                      class="u-custom-font u-label u-label-4"
+                      >Country/Region *</label
+                    >
+                    <div class="u-form-select-wrapper">
+                      <select
+                        id="select-49cf"
+                        name="country"
+                        class="
+                          u-border-1
+                          u-border-palette-5-base
+                          u-custom-font
+                          u-font-montserrat
+                          u-input
+                          u-input-rectangle
+                          u-white
+                          u-input-4
+                        "
+                        required="required"
+                      >
+                        <option value="Afghanistan">Afghanistan</option>
+                        <option value="Albania">Albania</option>
+                        <option value="Algeria">Algeria</option>
+                        <option value="Andorra">Andorra</option>
+                        <option value="Angola">Angola</option>
+                        <option value="Antigua and Barbuda">
+                          Antigua and Barbuda
+                        </option>
+                        <option value="Argentina">Argentina</option>
+                        <option value="Armenia">Armenia</option>
+                        <option value="Australia">Australia</option>
+                        <option value="Austria">Austria</option>
+                        <option value="Azerbaijan">Azerbaijan</option>
+                        <option value="The Bahamas">The Bahamas</option>
+                        <option value="Bahrain">Bahrain</option>
+                        <option value="Bangladesh">Bangladesh</option>
+                        <option value="Barbados">Barbados</option>
+                        <option value="Belarus">Belarus</option>
+                        <option value="Belgium">Belgium</option>
+                        <option value="Belize">Belize</option>
+                        <option value="Benin">Benin</option>
+                        <option value="Bhutan">Bhutan</option>
+                        <option value="Bolivia">Bolivia</option>
+                        <option value="Bosnia and Herzegovina">
+                          Bosnia and Herzegovina
+                        </option>
+                        <option value="Botswana">Botswana</option>
+                        <option value="Brazil">Brazil</option>
+                        <option value="Brunei">Brunei</option>
+                        <option value="Bulgaria">Bulgaria</option>
+                        <option value="Burkina Faso">Burkina Faso</option>
+                        <option value="Burundi">Burundi</option>
+                        <option value="Cabo Verde">Cabo Verde</option>
+                        <option value="Cambodia">Cambodia</option>
+                        <option value="Cameroon">Cameroon</option>
+                        <option value="Canada">Canada</option>
+                        <option value="Central African Republic">
+                          Central African Republic
+                        </option>
+                        <option value="Chad">Chad</option>
+                        <option value="Chile">Chile</option>
+                        <option value="China">China</option>
+                        <option value="Colombia">Colombia</option>
+                        <option value="Comoros">Comoros</option>
+                        <option value="Congo, Democratic Republic of the">
+                          Congo, Democratic Republic of the
+                        </option>
+                        <option value="Congo, Republic of the">
+                          Congo, Republic of the
+                        </option>
+                        <option value="Costa Rica">Costa Rica</option>
+                        <option value="Côte d’Ivoire">Côte d’Ivoire</option>
+                        <option value="Croatia">Croatia</option>
+                        <option value="Cuba">Cuba</option>
+                        <option value="Cyprus">Cyprus</option>
+                        <option value="Czech Republic">Czech Republic</option>
+                        <option value="Denmark">Denmark</option>
+                        <option value="Djibouti">Djibouti</option>
+                        <option value="Dominica">Dominica</option>
+                        <option value="Dominican Republic">
+                          Dominican Republic
+                        </option>
+                        <option value="East Timor (Timor-Leste)">
+                          East Timor (Timor-Leste)
+                        </option>
+                        <option value="Ecuador">Ecuador</option>
+                        <option value="Egypt">Egypt</option>
+                        <option value="El Salvador">El Salvador</option>
+                        <option value="Equatorial Guinea">
+                          Equatorial Guinea
+                        </option>
+                        <option value="Eritrea">Eritrea</option>
+                        <option value="Estonia">Estonia</option>
+                        <option value="Eswatini">Eswatini</option>
+                        <option value="Ethiopia">Ethiopia</option>
+                        <option value="Fiji">Fiji</option>
+                        <option value="Finland">Finland</option>
+                        <option value="France">France</option>
+                        <option value="Gabon">Gabon</option>
+                        <option value="The Gambia">The Gambia</option>
+                        <option value="Georgia">Georgia</option>
+                        <option value="Germany">Germany</option>
+                        <option value="Ghana">Ghana</option>
+                        <option value="Greece">Greece</option>
+                        <option value="Grenada">Grenada</option>
+                        <option value="Guatemala">Guatemala</option>
+                        <option value="Guinea">Guinea</option>
+                        <option value="Guinea-Bissau">Guinea-Bissau</option>
+                        <option value="Guyana">Guyana</option>
+                        <option value="Haiti">Haiti</option>
+                        <option value="Honduras">Honduras</option>
+                        <option value="Hungary">Hungary</option>
+                        <option value="Iceland">Iceland</option>
+                        <option value="India">India</option>
+                        <option value="Indonesia">Indonesia</option>
+                        <option value="Iran">Iran</option>
+                        <option value="Iraq">Iraq</option>
+                        <option value="Ireland">Ireland</option>
+                        <option value="Israel">Israel</option>
+                        <option value="Italy">Italy</option>
+                        <option value="Jamaica">Jamaica</option>
+                        <option value="Japan">Japan</option>
+                        <option value="Jordan">Jordan</option>
+                        <option value="Kazakhstan">Kazakhstan</option>
+                        <option value="Kenya">Kenya</option>
+                        <option value="Kiribati">Kiribati</option>
+                        <option value="Korea, North">Korea, North</option>
+                        <option value="Korea, South">Korea, South</option>
+                        <option value="Kosovo">Kosovo</option>
+                        <option value="Kuwait">Kuwait</option>
+                        <option value="Kyrgyzstan">Kyrgyzstan</option>
+                        <option value="Laos">Laos</option>
+                        <option value="Latvia">Latvia</option>
+                        <option value="Lebanon">Lebanon</option>
+                        <option value="Lesotho">Lesotho</option>
+                        <option value="Liberia">Liberia</option>
+                        <option value="Libya">Libya</option>
+                        <option value="Liechtenstein">Liechtenstein</option>
+                        <option value="Lithuania">Lithuania</option>
+                        <option value="Luxembourg">Luxembourg</option>
+                        <option value="Madagascar">Madagascar</option>
+                        <option value="Malawi">Malawi</option>
+                        <option value="Malaysia">Malaysia</option>
+                        <option value="Maldives">Maldives</option>
+                        <option value="Mali">Mali</option>
+                        <option value="Malta">Malta</option>
+                        <option value="Marshall Islands">
+                          Marshall Islands
+                        </option>
+                        <option value="Mauritania">Mauritania</option>
+                        <option value="Mauritius">Mauritius</option>
+                        <option value="Mexico">Mexico</option>
+                        <option value="Micronesia, Federated States of">
+                          Micronesia, Federated States of
+                        </option>
+                        <option value="Moldova">Moldova</option>
+                        <option value="Monaco">Monaco</option>
+                        <option value="Mongolia">Mongolia</option>
+                        <option value="Montenegro">Montenegro</option>
+                        <option value="Morocco">Morocco</option>
+                        <option value="Mozambique">Mozambique</option>
+                        <option value="Myanmar (Burma)">Myanmar (Burma)</option>
+                        <option value="Namibia">Namibia</option>
+                        <option value="Nauru">Nauru</option>
+                        <option value="Nepal">Nepal</option>
+                        <option value="Netherlands">Netherlands</option>
+                        <option value="New Zealand">New Zealand</option>
+                        <option value="Nicaragua">Nicaragua</option>
+                        <option value="Niger">Niger</option>
+                        <option value="Nigeria">Nigeria</option>
+                        <option value="North Macedonia">North Macedonia</option>
+                        <option value="Norway">Norway</option>
+                        <option value="Oman">Oman</option>
+                        <option value="Pakistan">Pakistan</option>
+                        <option value="Palau">Palau</option>
+                        <option value="Panama">Panama</option>
+                        <option value="Papua New Guinea">
+                          Papua New Guinea
+                        </option>
+                        <option value="Paraguay">Paraguay</option>
+                        <option value="Peru">Peru</option>
+                        <option value="Philippines">Philippines</option>
+                        <option value="Poland">Poland</option>
+                        <option value="Portugal">Portugal</option>
+                        <option value="Qatar">Qatar</option>
+                        <option value="Romania">Romania</option>
+                        <option value="Russia">Russia</option>
+                        <option value="Rwanda">Rwanda</option>
+                        <option value="Saint Kitts and Nevis">
+                          Saint Kitts and Nevis
+                        </option>
+                        <option value="Saint Lucia">Saint Lucia</option>
+                        <option value="Saint Vincent and the Grenadines">
+                          Saint Vincent and the Grenadines
+                        </option>
+                        <option value="Samoa">Samoa</option>
+                        <option value="San Marino">San Marino</option>
+                        <option value="Sao Tome and Principe">
+                          Sao Tome and Principe
+                        </option>
+                        <option value="Saudi Arabia">Saudi Arabia</option>
+                        <option value="Senegal">Senegal</option>
+                        <option value="Serbia">Serbia</option>
+                        <option value="Seychelles">Seychelles</option>
+                        <option value="Sierra Leone">Sierra Leone</option>
+                        <option value="Singapore">Singapore</option>
+                        <option value="Slovakia">Slovakia</option>
+                        <option value="Slovenia">Slovenia</option>
+                        <option value="Solomon Islands">Solomon Islands</option>
+                        <option value="Somalia">Somalia</option>
+                        <option value="South Africa">South Africa</option>
+                        <option value="Spain">Spain</option>
+                        <option value="Sri Lanka">Sri Lanka</option>
+                        <option value="Sudan">Sudan</option>
+                        <option value="Sudan, South">Sudan, South</option>
+                        <option value="Suriname">Suriname</option>
+                        <option value="Sweden">Sweden</option>
+                        <option value="Switzerland">Switzerland</option>
+                        <option value="Syria">Syria</option>
+                        <option value="Taiwan">Taiwan</option>
+                        <option value="Tajikistan">Tajikistan</option>
+                        <option value="Tanzania">Tanzania</option>
+                        <option value="Thailand">Thailand</option>
+                        <option value="Togo">Togo</option>
+                        <option value="Tonga">Tonga</option>
+                        <option value="Trinidad and Tobago">
+                          Trinidad and Tobago
+                        </option>
+                        <option value="Tunisia">Tunisia</option>
+                        <option value="Turkey">Turkey</option>
+                        <option value="Turkmenistan">Turkmenistan</option>
+                        <option value="Tuvalu">Tuvalu</option>
+                        <option value="Uganda">Uganda</option>
+                        <option value="Ukraine">Ukraine</option>
+                        <option value="United Arab Emirates">
+                          United Arab Emirates
+                        </option>
+                        <option value="United Kingdom">United Kingdom</option>
+                        <option value="United States">United States</option>
+                        <option value="Uruguay">Uruguay</option>
+                        <option value="Uzbekistan">Uzbekistan</option>
+                        <option value="Vanuatu">Vanuatu</option>
+                        <option value="Vatican City">Vatican City</option>
+                        <option value="Venezuela">Venezuela</option>
+                        <option value="Vietnam">Vietnam</option>
+                        <option value="Yemen">Yemen</option>
+                        <option value="Zambia">Zambia</option>
+                        <option value="Zimbabwe">Zimbabwe</option>
+                      </select>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="14"
+                        height="12"
+                        version="1"
+                        class="u-caret"
+                      >
+                        <path fill="currentColor" d="M4 8L0 4h8z"></path>
+                      </svg>
+                    </div>
+                  </div>
+                  <div class="u-form-group u-form-group-5">
+                    <label
+                      for="text-d31a"
+                      class="u-custom-font u-label u-label-5"
+                      >Address *</label
+                    >
+                    <input
+                      type="text"
+                      placeholder="Address line 1"
+                      id="text-d31a"
+                      name="addressline1"
+                      class="
+                        u-border-1
+                        u-border-palette-5-base
+                        u-custom-font
+                        u-font-montserrat
+                        u-input
+                        u-input-rectangle
+                        u-white
+                        u-input-5
+                      "
+                      required="required"
+                    />
+                  </div>
+                  <div class="u-form-group u-form-group-6">
+                    <label
+                      for="text-28a2"
+                      class="
+                        u-custom-font u-form-control-hidden u-label u-label-6
+                      "
+                    ></label>
+                    <input
+                      type="text"
+                      placeholder="Address line 2"
+                      id="text-28a2"
+                      name="addressline2"
+                      class="
+                        u-border-1
+                        u-border-palette-5-base
+                        u-custom-font
+                        u-font-montserrat
+                        u-input
+                        u-input-rectangle
+                        u-white
+                        u-input-6
+                      "
+                    />
+                  </div>
+                  <div class="u-form-group u-form-group-7">
+                    <label
+                      for="text-bf9e"
+                      class="u-custom-font u-label u-label-7"
+                      >Town/City *</label
+                    >
+                    <input
+                      type="text"
+                      placeholder="your City"
+                      id="text-bf9e"
+                      name="city"
+                      class="
+                        u-border-1
+                        u-border-palette-5-base
+                        u-custom-font
+                        u-font-montserrat
+                        u-input
+                        u-input-rectangle
+                        u-white
+                        u-input-7
+                      "
+                      required="required"
+                    />
+                  </div>
+                  <div class="u-form-group u-form-group-8">
+                    <label
+                      for="text-5e86"
+                      class="u-custom-font u-label u-label-8"
+                      >State *</label
+                    >
+                    <input
+                      type="text"
+                      placeholder="your State"
+                      id="text-5e86"
+                      name="state"
+                      class="
+                        u-border-1
+                        u-border-palette-5-base
+                        u-custom-font
+                        u-font-montserrat
+                        u-input
+                        u-input-rectangle
+                        u-white
+                        u-input-8
+                      "
+                      required="required"
+                    />
+                  </div>
+                  <div class="u-form-group u-form-group-9">
+                    <label
+                      for="text-2771"
+                      class="u-custom-font u-label u-label-9"
+                      >Pincode *</label
+                    >
+                    <input
+                      type="text"
+                      placeholder="your city Pincode"
+                      id="text-2771"
+                      name="pincode"
+                      class="
+                        u-border-1
+                        u-border-palette-5-base
+                        u-custom-font
+                        u-font-montserrat
+                        u-input
+                        u-input-rectangle
+                        u-white
+                        u-input-9
+                      "
+                      required="required"
+                    />
+                  </div>
+                  <div class="u-form-group u-form-phone u-form-group-10">
+                    <label
+                      for="phone-eaeb"
+                      class="u-custom-font u-label u-label-10"
+                      >Phone *</label
+                    >
+                    <input
+                      type="tel"
+                      pattern="[0-9]{10}"
+                      placeholder="Enter your phone (e.g. +14155552675)"
+                      id="phone-eaeb"
+                      name="phone"
+                      class="
+                        u-border-1
+                        u-border-palette-5-base
+                        u-custom-font
+                        u-font-montserrat
+                        u-input
+                        u-input-rectangle
+                        u-white
+                        u-input-10
+                      "
+                      required=""
+                    />
+                  </div>
+                  <div class="u-form-email u-form-group">
+                    <label
+                      for="email-be7f"
+                      class="u-custom-font u-label u-label-11"
+                      >Your Email *</label
+                    >
+                    <input
+                      type="email"
+                      placeholder="Enter a valid email address"
+                      id="email-be7f"
+                      name="email"
+                      class="
+                        u-border-1
+                        u-border-palette-5-base
+                        u-custom-font
+                        u-font-montserrat
+                        u-input
+                        u-input-rectangle
+                        u-white
+                        u-input-11
+                      "
+                      required=""
+                    />
+                  </div>
+                  <div class="u-form-checkbox u-form-group u-form-group-12">
+                    <input
+                      type="checkbox"
+                      id="checkbox-c3c9"
+                      name="checkbox"
+                      required="required"
+                      checked="checked"
+                      value="On"
+                    />
+                    <label
+                      for="checkbox-c3c9"
+                      class="u-custom-font u-label u-label-12"
+                      >I have read and agree to the website terms and conditions
+                      *</label
+                    >
+                  </div>
+                  <div class="u-form-checkbox u-form-group u-form-group-12">
+                    <input
+                      type="checkbox"
+                      id="checkbox-c3c91"
+                      name="createaccount"
+                      checked="checked"
+                      value="On"
+                    />
+                    <label
+                      for="checkbox-c3c91"
+                      class="u-custom-font u-label u-label-12"
+                      >Create my account
+                      </label
+                    >
+                  </div>
+                  <div class="u-align-center u-form-group u-form-submit">
+                    <!-- <a
+                    href=""
+                      class="
+                        u-btn
+                        u-btn-submit
+                        u-button-style
+                        u-custom-color-1
+                        u-custom-font
+                        u-hover-custom-color-2
+                        u-text-custom-color-3
+                        u-text-hover-custom-color-1
+                        u-btn-3
+                      "
+                      >Place Oder<br/>
+                  </a> -->
+
+
+                    <!-- <input
+                      type="submit"
+                      value="Place Oder"
+                      class="
+                      u-btn
+                        u-btn-submit
+                        u-button-style
+                        u-custom-color-1
+                        u-custom-font
+                        u-hover-custom-color-2
+                        u-text-custom-color-3
+                        u-text-hover-custom-color-1
+                        u-btn-3"
+                    /> -->
+                    <button type="button" id="checkout-button" value="Place Oder"
+                      class="
+                      u-btn
+                      u-btn-submit
+                      u-button-style
+                      u-custom-color-1
+                      u-custom-font
+                      u-hover-custom-color-2
+                      u-text-custom-color-3
+                      u-text-hover-custom-color-1
+                      u-btn-3"
+                    >Checkout</button>
+                  </div>
+                  
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
+
+<!--*   script     --->
+{% block script %}
+<!--   your Body starts here    --->
+
+
+<script type="text/javascript">
+  // Create an instance of the Stripe object with your publishable API key
+  var stripe = Stripe("{{ STRIPE_PUBLIC_KEY }}");
+  var checkoutButton = document.getElementById("checkout-button");
+
+  checkoutButton.addEventListener("click", function () {
+    fetch("/t-kart/create-checkout-session", {
+      method: "POST",
+    })
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (session) {
+        return stripe.redirectToCheckout({ sessionId: session.id });
+      })
+      .then(function (result) {
+        // If redirectToCheckout fails due to a browser or network
+        // error, you should display the localized error message to your
+        // customer using error.message.
+        if (result.error) {
+          alert(result.error.message);
+        }
+      })
+      .catch(function (error) {
+        console.error("Error:", error);
+      });
+  });
+</script>
+
+
+{% endblock %}
+
