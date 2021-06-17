@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-zc5j*#ltnx6#rxv#b-e@*v09q60@xkc93u2+a=714^eltxn5ny'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.0.103', '127.0.0.1']
+ALLOWED_HOSTS = ['192.168.0.103', '127.0.0.1', ]
 
 
 # Application definition
@@ -134,9 +134,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 
-
-
-""" 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Static files (CSS, JavaScript, Images)
@@ -149,36 +146,25 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
+
+
+""" 
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
+STATIC_URL = '/static/'
  """
 
-
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATIC_URL = '/static/'
-
-
 #STATICFILES_DIRS = (str(BASE_DIR.joinpath('static')),) #! new
-
-
-
-
 
 #! Managing media directory
 MEDIA_ROOT= os.path.join(BASE_DIR, "media")
 MEDIA_URL = '/media/'
 
 
-STRIPE_PUBLIC_KEY = 'pk_test_51IjrniEo8O02AHY9nVTg4slqgqv4rhNFtsVkA17cd4p2RptuePUPlcYm49YvZXj1gRjeGLn2EgfHaro7x5u1x0gL00eT4T9lSs'
-
-STRIPE_SECRET_KEY = 'sk_test_51IjrniEo8O02AHY9J9k8C7y1qOumbbhWpRW1RuZlZaL1qBkhrDwFfBnnVahrheHKHAQicEeLgDviWjo4jwsPbGn600muNJhl4H'
-
-STRIPE_WEBHOOK_SECRET = ''
-
-# Activate Django-Heroku.
-django_heroku.settings(locals())
-
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# Activate Django-Heroku.
+django_heroku.settings(locals())
