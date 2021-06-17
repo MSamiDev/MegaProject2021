@@ -335,17 +335,6 @@ def wishlist(request):
 class CreateCheckoutSessionView(View):
     def post(self, request, *args, **kwargs):
         YOUR_DOMAIN = "https://127.0.0.1:8000"
-        pl = {
-                    'price_data': {
-                        'currency': 'usd',
-                        'unit_amount': 2000,
-                        'product_data': {
-                            'name': 'Stubborn Attachments',
-                            'images': ['https://i.imgur.com/EHyR2nP.png'],
-                        },
-                    },
-                    'quantity': 1,
-                }
         checkout_session = stripe.checkout.Session.create(
             payment_method_types=['card',],
             line_items=[
