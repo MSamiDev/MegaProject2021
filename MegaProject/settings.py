@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 import os
+from django import django_heroku
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -172,6 +173,10 @@ STRIPE_PUBLIC_KEY = 'pk_test_51IjrniEo8O02AHY9nVTg4slqgqv4rhNFtsVkA17cd4p2RptueP
 STRIPE_SECRET_KEY = 'sk_test_51IjrniEo8O02AHY9J9k8C7y1qOumbbhWpRW1RuZlZaL1qBkhrDwFfBnnVahrheHKHAQicEeLgDviWjo4jwsPbGn600muNJhl4H'
 
 STRIPE_WEBHOOK_SECRET = ''
+
+# Activate Django-Heroku.
+django_heroku.settings(locals())
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
