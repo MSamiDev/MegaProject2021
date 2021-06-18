@@ -21,10 +21,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-zc5j*#ltnx6#rxv#b-e@*v09q60@xkc93u2+a=714^eltxn5ny'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['192.168.0.103', '127.0.0.1', 't-kart.herokuapp.com' ]
 
@@ -156,9 +156,13 @@ STATIC_URL = '/static/'
 #STATICFILES_DIRS = (str(BASE_DIR.joinpath('static')),) #! new
 
 #! Managing media directory
-MEDIA_ROOT= os.path.join(BASE_DIR, "media")
 MEDIA_URL = '/media/'
+MEDIA_ROOT= os.path.join(BASE_DIR, "media")
 
+""" MEDIAFILES_DIRS = [
+    os.path.join(os.path.dirname(BASE_DIR), "media"),
+]
+ """
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
