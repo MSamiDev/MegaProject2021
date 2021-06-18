@@ -11,7 +11,6 @@ from django.conf import settings
 import stripe
 
 
-
 # Create your views here.
 
 
@@ -57,6 +56,7 @@ class index(View):
             page_obj = product_pagination.page(product_pagination.num_pages)
         context = {'page_obj': page_obj}
         return render(request, 'T_kart/Shop.html', context)
+
 
 class Signup(View):
     def get(self, request):
@@ -122,6 +122,7 @@ class Signup(View):
 
         return error_message
 
+
 """ 
 class signUp(View):
     def get(self,request):
@@ -163,6 +164,7 @@ class signUp(View):
 
  """
 
+
 class Login(View):
     return_url = None
 
@@ -193,9 +195,11 @@ class Login(View):
         print(email, password)
         return render(request, 'T_kart/Login.html', {'error': error_message})
 
+
 def logout(request):
     request.session.clear()
     return redirect('/t-kart/login/')
+
 
 def myAccount(request):
     customer_session = request.session.get('customer')
@@ -207,6 +211,7 @@ def myAccount(request):
         return render(request, 'T_kart/My-Account.html', context)
     else:
         return redirect('/t-kart/login/')
+
 
 class productView(View):
 
@@ -233,14 +238,15 @@ class productView(View):
 
         request.session['kart'] = kart
         return render(request, 'T_kart/ProductView.html', {'product': products[0]})
-        #return redirect(reverse('T_kart:product-view', {'product': products[0]}))
+        # return redirect(reverse('T_kart:product-view', {'product': products[0]}))
 
     def get(self, request, slug):
         product = Product.objects.filter(product_slug=slug)
         return render(request, 'T_kart/ProductView.html', {'product': product[0]})
 
+
 class kart(View):
-    
+
     def post(self, request):
         product = request.POST.get('product')
         removeKart = request.POST.get('removeKart')
@@ -267,7 +273,6 @@ class kart(View):
 
         request.session['kart'] = kart
         return redirect('/t-kart/kart/')
-   
 
     def get(self, request):
         ids = list(request.session.get('kart').keys())
@@ -275,14 +280,16 @@ class kart(View):
         context = {'products': products}
         return render(request, 'T_kart/Kart.html', context)
 
+
 class checkout(View):
 
     def get(self, request):
         ids = list(request.session.get('kart').keys())
         products = Product.get_products_by_id(ids)
-        context = {'products': products, 'STRIPE_PUBLIC_KEY' : settings.STRIPE_PUBLIC_KEY }
+        context = {'products': products,
+                   'STRIPE_PUBLIC_KEY': settings.STRIPE_PUBLIC_KEY}
         return render(request, 'T_kart/Checkout.html', context)
-    
+
     def post(self, request):
         first_name = request.POST.get('firstname')
         last_name = request.POST.get('lastname')
@@ -300,8 +307,9 @@ class checkout(View):
         customer = request.session.get('customer')
         kart = request.session.get('kart')
         products = Product.get_products_by_id(list(kart.keys()))
-        print(first_name, last_name, company_name, country, address_line_1, address_line_2, city, state, pincode, phone, email, TandC_agree, create_account, products)
-        #return render(request, 'T_kart/Shop.html')
+        print(first_name, last_name, company_name, country, address_line_1, address_line_2,
+              city, state, pincode, phone, email, TandC_agree, create_account, products)
+        # return render(request, 'T_kart/Shop.html')
 
         for product in products:
             print(kart.get(str(product.id)))
@@ -322,10 +330,8 @@ class checkout(View):
             order.placeOrder()
         request.session['kart'] = {}
 
-
-
-
         return redirect('/t-kart/')
+
 
 def wishlist(request):
     return render(request, 'T_kart/Wishlist.html')
@@ -335,7 +341,7 @@ class CreateCheckoutSessionView(View):
     def post(self, request, *args, **kwargs):
         YOUR_DOMAIN = "https://127.0.0.1:8000"
         checkout_session = stripe.checkout.Session.create(
-            payment_method_types=['card',],
+            payment_method_types=['card', ],
             line_items=[
                 {
                     'price_data': {
