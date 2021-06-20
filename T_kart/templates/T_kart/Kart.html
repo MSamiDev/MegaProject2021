@@ -152,8 +152,8 @@
                     class='u-button-style u-custom-color-1 u-text-hover-custom-color-1 minus'
                     style="padding: 5px; width: 30px;" value="-"></input>
                 </form>
-                <span id='val' class="u-custom-font" style="margin: 7px;">{{
-                  product|cart_product_qty:request.session.kart}} Qty</span>
+                <span id='val' class="u-custom-font" style="margin: 7px;">
+                  {{product|cart_product_qty:request.session.kart}} Qty</span>
                 <form action="/t-kart/kart/#{{product.id}}" method="post">
                   {% csrf_token %}
                   <input type="text" hidden name="product" value="{{product.id}}">

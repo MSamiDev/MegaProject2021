@@ -55,6 +55,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    #'T_kart.middlewares.auth.auth_middleware'
 ]
 
 ROOT_URLCONF = 'MegaProject.urls'

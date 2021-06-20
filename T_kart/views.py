@@ -9,6 +9,8 @@ from django.core.paginator import Paginator
 from django.views import View
 from django.conf import settings
 import stripe
+from T_kart.middlewares.auth import auth_middleware
+from django.utils.decorators import method_decorator
 
 
 # Create your views here.
@@ -201,16 +203,24 @@ def logout(request):
     return redirect('/t-kart/login/')
 
 
-def myAccount(request):
-    customer_session = request.session.get('customer')
-    orders = Order.get_orders_by_customer(customer_session)
-    id = request.session.get('customer')
-    customer = Customer.get_customer_by_id(id)
-    if customer:
-        context = {'customer': customer, 'orders': orders}
-        return render(request, 'T_kart/My-Account.html', context)
-    else:
-        return redirect('/t-kart/login/')
+class myAccount(View):
+
+    #@method_decorator(auth_middleware)
+    def get(self, request):    
+        customer_session = request.session.get('customer')
+        orders = Order.get_orders_by_customer(customer_session)
+        id = request.session.get('customer')
+        customer = Customer.get_customer_by_id(id)
+        
+        if customer:
+            context = {'customer': customer, 'orders': orders}
+            return render(request, 'T_kart/My-Account.html', context)
+        else:
+            return redirect('/t-kart/login/') 
+
+        #context = {'customer': customer, 'orders': orders}
+        #return render(request, 'T_kart/My-Account.html', context)
+        
 
 
 class productView(View):
@@ -286,8 +296,7 @@ class checkout(View):
     def get(self, request):
         ids = list(request.session.get('kart').keys())
         products = Product.get_products_by_id(ids)
-        context = {'products': products,
-                   'STRIPE_PUBLIC_KEY': settings.STRIPE_PUBLIC_KEY}
+        context = {'products': products}
         return render(request, 'T_kart/Checkout.html', context)
 
     def post(self, request):
@@ -336,29 +345,3 @@ class checkout(View):
 def wishlist(request):
     return render(request, 'T_kart/Wishlist.html')
 
-
-class CreateCheckoutSessionView(View):
-    def post(self, request, *args, **kwargs):
-        YOUR_DOMAIN = "https://127.0.0.1:8000"
-        checkout_session = stripe.checkout.Session.create(
-            payment_method_types=['card', ],
-            line_items=[
-                {
-                    'price_data': {
-                        'currency': 'usd',
-                        'unit_amount': 2000,
-                        'product_data': {
-                            'name': 'Stubborn Attachments',
-                            'images': ['https://i.imgur.com/EHyR2nP.png'],
-                        },
-                    },
-                    'quantity': 1,
-                },
-            ],
-            mode='payment',
-            success_url=YOUR_DOMAIN + '/t-kart/success/',
-            cancel_url=YOUR_DOMAIN + '/t-kart/cancel/',
-        )
-        return JsonResponse({
-            'id': checkout_session.id
-        })

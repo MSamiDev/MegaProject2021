@@ -26,10 +26,8 @@ urlpatterns = [
     path('signUp/', views.Signup.as_view(), name="signUp"),
     path('login/', views.Login.as_view(), name="login"),
     path('logout/', views.logout , name='logout'),
-    path('my-account/', views.myAccount, name="myAccount"),
+    path('my-account/', views.myAccount.as_view(), name="myAccount"),
     path('wishlist/', views.wishlist, name="wishlist"),
-
-    path('create-checkout-session/<pk>/', views.CreateCheckoutSessionView.as_view(), name='create-checkout-session')
 
 
 
