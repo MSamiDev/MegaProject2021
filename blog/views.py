@@ -22,5 +22,7 @@ def index(request):
     return render(request, 'blog/Blog-Page.html', context)
 
 
-def blog(request):
-    return render(request, 'blog/Blog-Post.html')
+def blog(request, slug):
+    blog_post = Blog.objects.filter(blog_slug=slug)
+    context = {'blog_post': blog_post[0]}
+    return render(request, 'blog/Blog-Post.html', context)
