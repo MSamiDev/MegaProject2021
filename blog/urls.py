@@ -20,5 +20,6 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name="Blog"),
+    path('blogpost', views.blog, name='blogpost'),
 
 ]

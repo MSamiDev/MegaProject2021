@@ -18,16 +18,16 @@
     ></script>
 
     <link rel="stylesheet" href="{% static 'CSS/style.css' %}" />
-    <title>{% block title %} {% endblock %}</title>
+    <title>{% block title %} Blog by sakar | {% endblock %}</title>
+    {% block head %} {% endblock %}
   </head>
 
   <body>
     <div>
       <nav class="navigation">
         <div>
-          <a href="#"
-            ><img src="{% static 'images/favicon.png' %}" alt="LOGO"
-          /></a>
+          <a href="/"
+            ><img src="{% static 'images/favicon.png' %}" alt="LOGO" class="logo-img"/></a>
         </div>
 
         <label for="check" class="hamberger">
@@ -39,17 +39,24 @@
       </nav>
 
       <div class="nav-list">
-        <ul class="menu-list">
-          <li class="nav-item"><a href="/" class="list-item">Home</a></li>
-          <li class="nav-item"><a href="/t-kart" class="list-item">Shop</a></li>
-          <li class="nav-item">
-            <a href="/about-us" class="list-item">About Us</a>
-          </li>
-          <li class="nav-item">
-            <a href="/contact-us" class="list-item">Contact Us</a>
-          </li>
-          <li class="nav-item"><a href="/blog" class="list-item">Blog</a></li>
-        </ul>
+        <div class="full-page-menu">
+
+          <ul class="menu-list">
+            <li class="nav-item"><a href="/" class="list-item">Home</a></li>
+            <li class="nav-item">
+              <a href="/t-kart" class="list-item">T-Kart</a>
+            </li>
+            <li class="nav-item">
+              <a href="/about-us" class="list-item">About Us</a>
+            </li>
+            <li class="nav-item">
+              <a href="/contact-us" class="list-item">Contact Us</a>
+            </li>
+            <li class="nav-item"><a href="/blog" class="list-item">Blog</a></li>
+          </ul>
+          <div class="full-page-t-kart-btn"><a href="/t-kart" class="T-Kart-menu"> Shop on T-Kart <small>by SaKar</small> >>></a></div>
+        </div>
+
       </div>
     </div>
 
@@ -114,5 +121,6 @@
     </footer>
 
     <script src="{% static 'JS/app.js'%}"></script>
+    {% block script %} {% endblock %}
   </body>
 </html>

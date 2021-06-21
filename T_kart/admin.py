@@ -4,10 +4,6 @@ from django.contrib import admin
 from .models import *
 
 
-class AdminProduct(admin.ModelAdmin):
-    list_display = ['product_name', 'price', 'category']
-
-
 
 admin.site.register(Product)
 admin.site.register(Customer)

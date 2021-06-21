@@ -3,7 +3,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils.timezone import now , datetime
 from django.core.validators import MinLengthValidator
-from pytz import country_names
+
 
 
 # Create your models here.

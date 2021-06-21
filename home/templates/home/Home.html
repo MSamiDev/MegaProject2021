@@ -84,12 +84,14 @@
     <div class="u-blog u-expanded-width u-blog-1">
       <div class="u-repeater u-repeater-1">
         <!--blog_post-->
+
+        {% for blog_post in blog_posts|slice:":4"%}
         <div class="u-blog-post u-container-style u-repeater-item">
           <div
             class="u-container-layout u-similar-container u-valign-bottom-lg u-valign-bottom-md u-valign-bottom-sm u-valign-bottom-xl u-container-layout-1">
             <a class="u-post-header-link" href="blog/post.html">
               <!--blog_post_image-->
-              <img alt="" class="u-blog-control u-expanded-width u-image u-image-default u-image-1" src="{% static 'images/4.jpeg' %}">
+              <img alt="" class="u-blog-control u-expanded-width u-image u-image-default u-image-1" src="/media/{{blog_post.cover_image}}">
               <!--/blog_post_image-->
             </a>
             <div class="u-container-style u-group u-video-cover u-white u-group-1">
@@ -97,14 +99,14 @@
                 <!--blog_post_header-->
                 <h4 class="u-blog-control u-text u-text-3">
                   <a class="u-post-header-link" href="blog/post.html">
-                    <!--blog_post_header_content-->Post 1 Headline
+                    <!--blog_post_header_content-->{{blog_post.title}}
                     <!--/blog_post_header_content-->
                   </a>
                 </h4>
                 <!--/blog_post_header-->
                 <!--blog_post_content-->
                 <div class="u-blog-control u-post-content u-text u-text-4">
-                  <!--blog_post_content_content-->Sample small text. Lorem ipsum dolor sit amet.
+                  <!--blog_post_content_content-->{{blog_post.discription}}
                   <!--/blog_post_content_content-->
                 </div>
                 <!--/blog_post_content-->
@@ -119,44 +121,11 @@
             </div>
           </div>
         </div>
+
+        {% endfor %}
+
         <!--/blog_post-->
-        <!--blog_post-->
-        <div class="u-blog-post u-container-style u-repeater-item">
-          <div
-            class="u-container-layout u-similar-container u-valign-bottom-lg u-valign-bottom-md u-valign-bottom-sm u-valign-bottom-xl u-container-layout-3">
-            <a class="u-post-header-link" href="blog/post-1.html">
-              <!--blog_post_image-->
-              <img alt="" class="u-blog-control u-expanded-width u-image u-image-default u-image-2" src="{% static 'images/5.jpeg' %}">
-              <!--/blog_post_image-->
-            </a>
-            <div class="u-container-style u-group u-video-cover u-white u-group-2">
-              <div class="u-container-layout u-container-layout-4">
-                <!--blog_post_header-->
-                <h4 class="u-blog-control u-text u-text-default u-text-5">
-                  <a class="u-post-header-link" href="blog/post-1.html">
-                    <!--blog_post_header_content-->Post 2 Headline
-                    <!--/blog_post_header_content-->
-                  </a>
-                </h4>
-                <!--/blog_post_header-->
-                <!--blog_post_content-->
-                <div class="u-blog-control u-post-content u-text u-text-6">
-                  <!--blog_post_content_content-->Sample small text. Lorem ipsum dolor sit amet.
-                  <!--/blog_post_content_content-->
-                </div>
-                <!--/blog_post_content-->
-                <!--blog_post_readmore-->
-                <a href="blog/post-1.html"
-                  class="u-blog-control u-btn u-button-style u-custom-color-1 u-custom-font u-hover-custom-color-3 u-text-hover-custom-color-1 u-btn-2">
-                  <!--blog_post_readmore_content-->Read More
-                  <!--/blog_post_readmore_content-->
-                </a>
-                <!--/blog_post_readmore-->
-              </div>
-            </div>
-          </div>
-        </div>
-        <!--/blog_post-->
+      
       </div>
     </div>
     <!--/blog-->

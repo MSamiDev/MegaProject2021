@@ -1,0 +1,250 @@
+{% extends 'blog/layout.html' %}
+
+<!--*    title    --->
+{% block title %} Blog {% endblock %}
+
+<!--*    head    --->
+{% block head %} {%load static%}
+
+<meta
+  name="keywords"
+  content="Post 1 Headline, Post 2 Headline, Post 3 Headline"
+/>
+<meta name="description" content="" />
+<link rel="stylesheet" href="{% static 'CSS/nicepage.css' %}" media="screen" />
+<link rel="stylesheet" href="{% static 'CSS/Blog-Page.css' %}" media="screen" />
+<script
+  class="u-script"
+  type="text/javascript"
+  src="{% static 'JS/jquery.js' %}"
+  defer=""
+></script>
+<script
+  class="u-script"
+  type="text/javascript"
+  src="{% static 'JS/nicepage.js' %}"
+  defer=""
+></script>
+<link rel="icon" href="{% static 'images/favicon.png' %}" />
+<link
+  id="u-theme-google-font"
+  rel="stylesheet"
+  href="{% static 'CSS/fonts.css' %}"
+/>
+<link
+  id="u-page-google-font"
+  rel="stylesheet"
+  href="{% static 'CSS/Blog-Page-fonts.css' %}"
+/>
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Organization",
+    "name": "Sakar",
+    "url": "index.html",
+    "logo": "images/default-logo.png"
+  }
+</script>
+<meta property="og:title" content="Blog Page" />
+<meta property="og:type" content="website" />
+<meta name="theme-color" content="#478ac9" />
+<link rel="canonical" href="index.html" />
+<meta property="og:url" content="index.html" />
+
+{% endblock %}
+
+<!--*   body     --->
+{%block body%}
+<!--   your Body starts here    --->
+
+<section class="u-align-center u-clearfix u-section-1" id="carousel_38fe">
+  <div class="u-clearfix u-sheet u-valign-middle-xl u-sheet-1">
+    <!--blog--><!--blog_options_json--><!--{"type":"Recent","source":"","tags":"","count":""}--><!--/blog_options_json-->
+    <div class="u-blog u-expanded-width u-blog-1">
+      <div class="u-repeater u-repeater-1">
+        <!--blog_post-->
+
+        {% for blog_post in page_obj.object_list %}
+
+        <div
+          class="
+            u-align-center-xs u-blog-post u-container-style u-repeater-item
+          "
+        >
+          <div
+            class="
+              u-container-layout
+              u-similar-container
+              u-valign-middle-sm
+              u-valign-middle-xs
+              u-container-layout-1
+            "
+          >
+            <div
+              class="
+                u-expanded-width-xs
+                u-shape
+                u-shape-svg
+                u-text-custom-color-1
+                u-shape-1
+              "
+            >
+              <svg
+                class="u-svg-link"
+                preserveAspectRatio="none"
+                viewBox="0 0 160 110"
+              >
+                <use
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                  xlink:href="#svg-f3ad"
+                ></use>
+              </svg>
+              <svg
+                class="u-svg-content"
+                viewBox="0 0 160 110"
+                x="0px"
+                y="0px"
+                id="svg-f3ad"
+              >
+                <path
+                  d="M57.5,5.6c-17-10.9-35.9-4.1-45.4,4.5C-4.4,24.9-13.6,56.8,50.4,93.6c106.8,61.5,141.6-69.8,77.4-78.5
+	C84.5,9.3,88.9,25.8,57.5,5.6z"
+                ></path>
+              </svg>
+            </div>
+            <a class="u-post-header-link" href="blog/post.html"
+              ><!--blog_post_image-->
+              <img
+                alt=""
+                class="
+                  u-blog-control
+                  u-expanded-width-xs
+                  u-image
+                  u-image-round
+                  u-image-1
+                "
+                src="/media/{{blog_post.cover_image}}"
+              /><!--/blog_post_image--> </a
+            ><!--blog_post_header-->
+            <h2
+              class="
+                u-align-center u-blog-control u-custom-font u-text u-text-1
+              "
+            >
+              <a class="u-post-header-link" href="blog/post.html"
+                ><!--blog_post_header_content-->{{blog_post.title}}<!--/blog_post_header_content--></a
+              >
+            </h2>
+            <!--/blog_post_header--><!--blog_post_content-->
+            <div
+              class="
+                u-align-center
+                u-blog-control
+                u-custom-font
+                u-font-montserrat
+                u-post-content
+                u-text
+                u-text-2
+              "
+            >
+              <!--blog_post_content_content-->{{blog_post.discription}}<!--/blog_post_content_content-->
+            </div>
+            <!--/blog_post_content--><!--blog_post_metadata-->
+            <div
+              class="
+                u-align-center-lg
+                u-align-center-md
+                u-align-center-sm
+                u-align-center-xs
+                u-align-right-xl
+                u-blog-control
+                u-custom-font
+                u-font-montserrat
+                u-metadata
+                u-metadata-1
+              "
+            >
+              <!--blog_post_metadata_date-->
+              <span class="u-meta-date u-meta-icon"
+                ><!--blog_post_metadata_date_content-->{{blog_post.publish_date}}<!--/blog_post_metadata_date_content--></span
+              ><!--/blog_post_metadata_date-->
+            </div>
+            <!--/blog_post_metadata--><!--blog_post_readmore-->
+            <a
+              href="blog/post.html"
+              class="
+                u-align-center-lg
+                u-align-center-md
+                u-align-center-sm
+                u-align-center-xs
+                u-align-right-xl
+                u-blog-control
+                u-border-0
+                u-btn
+                u-button-style
+                u-custom-color-1
+                u-custom-font
+                u-font-montserrat
+                u-hover-custom-color-2
+                u-text-custom-color-3
+                u-text-hover-custom-color-1
+                u-btn-1
+              "
+              ><!--blog_post_readmore_content-->Read More<!--/blog_post_readmore_content--></a
+            ><!--/blog_post_readmore-->
+          </div>
+        </div>
+
+        {% endfor %}
+
+        <!--/blog_post-->
+      </div>
+    </div>
+
+    <!--/pagination-->
+    <div class="pagination-container">
+      <div class="pagination">
+        <!--/left_arrow-->
+        {%if page_obj.has_previous %}
+        <a href="?page={{page_obj.previous_page_number}}">&laquo Back</a>
+        {% else %}
+        <a class="disabled" tabindex="-1" aria-disabled="true">&laquo Back</a>
+        {% endif %}
+        <!--/left '...'-->
+        {% if page_obj.number|add:'-3' > 1 %}
+        <a class="" href="?page={{ page_obj.number|add:'-4' }}">&hellip;</a>
+        {% endif %}
+        <!--/page_no-->
+        {% for blog_post in page_obj.paginator.page_range %}
+        {% if page_obj.number == blog_post %}
+        <a class="active">{{ blog_post }}</a>
+
+        {% elif blog_post > page_obj.number|add:'-4' and blog_post < page_obj.number|add:'4' %} <a class="page-link"
+          href="?page={{ blog_post }}">
+          {{blog_post }}</a>
+          {% endif %}
+          {% endfor %}
+          <!--/right '...'-->
+          {% if page_obj.paginator.num_pages > page_obj.number|add:'3' %}
+          <a class="" href="?page={{ page_obj.number|add:'4' }}">&hellip;</a>
+          {% endif %}
+          <!--/right_arrow-->
+          {%if page_obj.has_next %}
+          <a href="?page={{page_obj.next_page_number}}">Next &raquo;</a>
+          {% else %}
+          <a class="disabled" tabindex="-1" aria-disabled="true">Next &raquo;</a>
+          {% endif %}
+      </div>
+    </div>
+    <!--/blog-->
+  </div>
+</section>
+
+{% endblock %}
+
+<!--*   script     --->
+{% block script %}
+<!--   your Body starts here    --->
+
+{% endblock %}
