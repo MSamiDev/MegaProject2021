@@ -1,0 +1,241 @@
+{% extends 'T_kart/layout.html' %}
+
+<!--*    title    --->
+{% block title %} T-Kart Product {% endblock %}
+
+<!--*    head    --->
+{% block head %} {%load static%} {% load cart %}
+
+<meta name="keywords" content="Wishlist" />
+<meta name="description" content="" />
+<link rel="stylesheet" href="{% static 'CSS/nicepage.css' %}" media="screen" />
+<link rel="stylesheet" href="{% static 'CSS/Wishlist.css' %}" media="screen" />
+
+<script
+  class="u-script"
+  type="text/javascript"
+  src="{% static 'JS/jquery.js' %}"
+  defer=""
+></script>
+<link rel="icon" href="{% static 'images/favicon.png' %}" />
+<link
+  id="u-theme-google-font"
+  rel="stylesheet"
+  href="{% static 'CSS/fonts.css' %}"
+/>
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Organization",
+    "name": "Sakar",
+    "url": "index.html",
+    "logo": "images/default-logo.png"
+  }
+</script>
+<meta property="og:title" content="Wishlist" />
+<meta property="og:type" content="website" />
+<meta name="theme-color" content="#478ac9" />
+<link rel="canonical" href="index.html" />
+<meta property="og:url" content="index.html" />
+
+
+<style>
+  .headcol {
+    position: relative;
+    width: 15em;
+    left: 0vw;
+    border-top-width: 3px;
+    /*only relevant for first row*/
+    margin-top: -1px;
+    /*compensate for top border*/
+  }
+  table {
+    border-spacing: 0;
+    border-top: 1px solid grey;
+  }
+
+  
+  td {
+    max-width: 700px;
+  }
+  
+
+  td,
+  th {
+    margin: 0;
+    padding: 30px;
+    border: 1px solid grey;
+    border-top-width: 0px;
+  }
+  .compare-countainer div.table {
+    overflow-x: scroll;
+    overflow-y: visible;
+    padding: 0;
+  }
+
+  
+  .compare-countainer {
+    padding: 3vw;
+  }
+</style>
+
+
+{% endblock %}
+
+<!--*   body     --->
+{%block body%}
+<!--   your Body starts here    --->
+
+<section class="u-clearfix u-section-1" id="sec-b469" style="min-height: 50vh;">
+  {%if products %}
+
+
+  <h1 style="text-align: center;">Products Comparison</h1>
+
+  <div class="compare-countainer">
+    <div style="overflow-x: scroll" class="table">
+      <table>
+        <thead>
+          <th class="headcol">Products</th>
+          <th>OS</th>
+          <th>RAM</th>
+          <th>Dimensions</th>
+          <th>Batteries</th>
+          <th>Model</th>
+          <th>Wireless Comunication</th>
+          <th>conectivity</th>
+          <th>display</th>
+          <th>camera</th>
+          <th>weaight</th>
+          <th>manufacturer</th>
+          <th>procesor</th>
+          <th>graphics</th>
+          <th>ports</th>
+          <th>storage</th>
+          <th>colour</th>
+        </thead>
+        <tbody>
+
+          {% for product in products%}
+          <!-- for loop from  here  -->
+          <tr valign="top" id="{{product.id}}">
+            <th class="headcol">
+              <img src="/media/{{product.image}}" alt="" style="height: 150px; width:150px; object-fit: contain;">
+              <h4>{{product.product_name}}</h4>
+              <h6>₹{{product.price}}</h6>
+
+              {% if product|is_in_cart:request.session.kart %}
+
+            <div style="display: flex; align-items: center; justify-content: center; margin-top: 20px ">
+              <form action="/t-kart/compare/#{{product.id}}" method="post">
+                {% csrf_token %}
+                <input type="text" hidden name="product" value="{{product.id}}">
+                <input type="text" hidden name="remove" value="True">
+                <input id='minus' type="submit"
+                  class='u-btn-1 u-button-style u-custom-color-1 u-text-hover-custom-color-1 minus'
+                  style="padding: 10px; width: 40px;" value="-"></input>
+              </form>
+              <span id='val' class="u-custom-font" style="margin: 20px 7px 0px 7px;">
+                {{product|cart_product_qty:request.session.kart}} in kart</span>
+              <form action="/t-kart/compare/#{{product.id}}" method="post">
+                {% csrf_token %}
+                <input type="text" hidden name="product" value="{{product.id}}">
+                <input id='plus' type="submit"
+                  class=' u-btn-1 u-button-style u-custom-color-1 u-text-hover-custom-color-1 plus'
+                  style="padding: 10px; width: 40px; " value="+"></input>
+              </form>
+            </div>
+
+            {% else %}
+            
+            <form action="/t-kart/compare/#{{product.id}}" method="POST">
+                {% csrf_token %}
+              <input type="text" hidden name="product" value="{{product.id}}">
+              <input
+                type="submit"
+                class="
+                  u-align-center
+                  u-btn
+                  u-button-style
+                  u-custom-color-1
+                  u-hover-custom-color-2
+                  u-text-hover-custom-color-1
+                  u-btn-2"
+                  value="Add to Kart"
+                ></input>
+              </form>
+
+              {% endif %}
+
+              <form action="/t-kart/compare/#{{product.id}}" method="post">
+                {% csrf_token %}
+                <input type="text" hidden name="product" value="{{product.id}}">
+                <input type="text" hidden name="remove_compare" value="True">
+
+                <input class="
+                  u-active-none
+                  u-align-center
+                  u-border-2
+                  u-border-custom-color-1
+                  u-border-hover-custom-color-3
+                  u-btn
+                  u-button-style
+                  u-custom-font
+                  u-hover-none
+                  u-none
+                  u-text-custom-color-2
+                  u-text-hover-custom-color-2
+                  u-btn-1
+                " type="submit" value="Remove from Compare"></input>
+              </form>
+
+
+
+            </th>
+            <td>{{product.os}}</td>
+            <td>{{product.ram}}</td>
+            <td>{{product.dimensions}}</td>
+            <td>{{product.batteries}}</td>
+            <td>{{product.model}}</td>
+            <td>{{product.wireless_comunication}}</td>
+            <td>{{product.conectivity}}</td>
+            <td>{{product.display}}</td>
+            <td>{{product.camera}}</td>
+            <td>{{product.weaight}}</td>
+            <td>{{product.manufacturer}}</td>
+            <td>{{product.procesor}}</td>
+            <td>{{product.graphics}}</td>
+            <td>{{product.ports}}</td>
+            <td>{{product.storage}}</td>
+            <td>{{product.colour}}</td>
+          </tr>
+
+
+          <!-- for loop end here  -->
+
+          {% endfor %}
+
+
+
+
+
+
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+  {% else %}
+  <div style="justify-content: center; margin:70px;">
+    <h1>Opps...! nothing to Compare</h1>
+    <a href="/t-kart/">
+      <h2 style="color: #05f4b7">Add Products to Compare >>></h2>
+    </a>
+  </div>
+  {% endif %}
+</section>
+
+{% endblock %}

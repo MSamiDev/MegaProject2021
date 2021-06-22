@@ -20,28 +20,75 @@ class index(View):
     def post(self, request):
         product = request.POST.get('product')
         remove = request.POST.get('remove')
-        kart = request.session.get('kart')
-        if kart:
-            quantity = kart.get(product)
-            if quantity:
-                if remove:
-                    if quantity <= 1:
-                        kart.pop(product)
-                    else:
-                        kart[product] = quantity-1
-                else:
-                    kart[product] = quantity+1
-            else:
-                kart[product] = 1
-        else:
-            kart = {}
-            kart[product] = 1
+        remove_compare = request.POST.get('remove_compare')
+        add_compare = request.POST.get('add_compare')
 
+        remove_wishlist = request.POST.get('remove_wishlist')
+        add_wishlist = request.POST.get('add_wishlist')
+
+        wishlist = request.session.get('wishlist')
+        compare = request.session.get('compare')
+        kart = request.session.get('kart')
+
+        # wishlist logic
+        if not remove:
+            if wishlist:
+                if remove_wishlist:
+                    wishlist.pop(product)
+                elif add_wishlist:
+                    wishlist[product] = 1
+            elif add_wishlist:
+                wishlist = {}
+                wishlist[product] = 1
+
+        request.session['wishlist'] = wishlist
+
+        # compare products logic
+        if not remove:
+            if compare:
+                if remove_compare:
+                    compare.pop(product)
+                elif add_compare:
+                    compare[product] = 1
+            elif add_compare:
+                compare = {}
+                compare[product] = 1
+
+        request.session['compare'] = compare
+
+        # Kart Logic
+        if not remove_compare:
+            if not add_compare:
+                if not add_wishlist:
+                    if not remove_wishlist:
+                        if kart:
+                            quantity = kart.get(product)
+                            if quantity:
+                                if remove:
+                                    if quantity <= 1:
+                                        kart.pop(product)
+                                    else:
+                                        kart[product] = quantity-1
+                                else:
+                                    kart[product] = quantity+1
+                            else:
+                                kart[product] = 1
+                        else:
+                            kart = {}
+                            kart[product] = 1
+
+        # print(kart)
         request.session['kart'] = kart
         return redirect('/t-kart/')
 
     def get(self, request):
+        wishlist = request.session.get('wishlist')
+        compare = request.session.get('compare')
         kart = request.session.get('kart')
+        if not wishlist:
+            request.session['wishlist'] = {}
+        if not compare:
+            request.session['compare'] = {}
         if not kart:
             request.session['kart'] = {}
 
@@ -125,48 +172,6 @@ class Signup(View):
         return error_message
 
 
-""" 
-class signUp(View):
-    def get(self,request):
-        return render(request, 'T_kart/SignUp.html')
-
-
-    def post(self,request):
-        postData = request.POST
-        first_name = postData.get('firstname')
-        last_name = postData.get('lastname')
-        email = postData.get('email')
-        phone = postData.get('phone')
-        password = postData.get('password')
-        #validation
-        
-        value = {
-            'first_name': first_name,
-            'last_name': last_name,
-            'phone': phone,
-            'email': email
-        } 
-
-        
-        
-
-        
-        print(first_name, last_name, email, phone, password)
-
-        customer = Customer(first_name=first_name, last_name=last_name, email=email, phone=phone, password=password)
-        customer.register()
-
-        return redirect('/t-kart/') 
-
-
-        else:
-            context = {'values': value }
-            return render(request, 'T_kart/SignUp.html', context) 
-
-
- """
-
-
 class Login(View):
     return_url = None
 
@@ -205,22 +210,21 @@ def logout(request):
 
 class myAccount(View):
 
-    #@method_decorator(auth_middleware)
-    def get(self, request):    
+    # @method_decorator(auth_middleware)
+    def get(self, request):
         customer_session = request.session.get('customer')
         orders = Order.get_orders_by_customer(customer_session)
         id = request.session.get('customer')
         customer = Customer.get_customer_by_id(id)
-        
+
         if customer:
             context = {'customer': customer, 'orders': orders}
             return render(request, 'T_kart/My-Account.html', context)
         else:
-            return redirect('/t-kart/login/') 
+            return redirect('/t-kart/login/')
 
         #context = {'customer': customer, 'orders': orders}
-        #return render(request, 'T_kart/My-Account.html', context)
-        
+        # return render(request, 'T_kart/My-Account.html', context)
 
 
 class productView(View):
@@ -342,6 +346,100 @@ class checkout(View):
         return redirect('/t-kart/')
 
 
-def wishlist(request):
-    return render(request, 'T_kart/Wishlist.html')
+class wishlist(View):
+    def get(self, request):
+        ids = list(request.session.get('wishlist').keys())
+        products = Product.get_products_by_id(ids)
+        context = {'products': products}
+        return render(request, 'T_kart/Wishlist.html', context)
 
+    def post(self, request):
+        product = request.POST.get('product')
+        remove_wishlist = request.POST.get('remove_wishlist')
+        removeKart = request.POST.get('removeKart')
+
+        remove = request.POST.get('remove')
+        kart = request.session.get('kart')
+
+
+        remove_wishlist = request.POST.get('remove_wishlist')
+        add_wishlist = request.POST.get('add_wishlist')
+
+        wishlist = request.session.get('wishlist')
+
+        if not remove:
+            if wishlist:
+                if remove_wishlist:
+                    wishlist.pop(product)
+                elif add_wishlist:
+                    wishlist[product] = 1
+            elif add_wishlist:
+                wishlist = {}
+                wishlist[product] = 1
+
+        request.session['wishlist'] = wishlist
+
+
+        if kart:
+            if removeKart:
+                kart.pop(product)
+            quantity = kart.get(product)
+            if quantity:
+                if remove:
+                    if quantity <= 1:
+                        kart.pop(product)
+                    else:
+                        kart[product] = quantity-1
+                else:
+                    kart[product] = quantity+1
+            else:
+                kart[product] = 1
+        else:
+            kart = {}
+            kart[product] = 1
+
+        request.session['kart'] = kart
+
+
+        request.session['kart'] = kart
+        return redirect('/t-kart/wishlist/')
+
+
+class compare(View):
+    def post(self, request):
+        product = request.POST.get('product')
+        remove = request.POST.get('remove')
+        remove_compare = request.POST.get('remove_compare')
+        compare = request.session.get('compare')
+        kart = request.session.get('kart')
+
+        if remove_compare:
+                    compare.pop(product)
+
+        if not remove_compare:
+            if kart:
+                quantity = kart.get(product)
+                if quantity:
+                    if remove:
+                        if quantity <= 1:
+                            kart.pop(product)
+                        else:
+                            kart[product] = quantity-1
+                    else:
+                        kart[product] = quantity+1
+                else:
+                    kart[product] = 1
+            else:
+                kart = {}
+                kart[product] = 1
+
+        request.session['kart'] = kart
+        return redirect('/t-kart/compare/')
+
+
+
+    def get(self, request):
+        ids = list(request.session.get('compare').keys())
+        products = Product.get_products_by_id(ids)
+        context = {'products': products}
+        return render(request, 'T_kart/Compare.html', context)

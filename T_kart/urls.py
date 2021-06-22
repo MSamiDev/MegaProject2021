@@ -27,8 +27,7 @@ urlpatterns = [
     path('login/', views.Login.as_view(), name="login"),
     path('logout/', views.logout , name='logout'),
     path('my-account/', views.myAccount.as_view(), name="myAccount"),
-    path('wishlist/', views.wishlist, name="wishlist"),
-
-
+    path('wishlist/', views.wishlist.as_view(), name="wishlist"),
+    path('compare/', views.compare.as_view(), name="compare"),
 
 ]

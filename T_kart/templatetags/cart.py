@@ -12,6 +12,28 @@ def is_in_cart(product, kart):
             return True
     return False;
 
+
+
+@register.filter(name='is_in_compare')
+def is_in_compare(product, compare):
+    keys = compare.keys()
+    for id in keys:
+        if int(id) == product.id:
+            return True
+    return False;
+
+
+
+@register.filter(name='is_in_wishlist')
+def is_in_wishlist(product, wishlist):
+    keys = wishlist.keys()
+    for id in keys:
+        if int(id) == product.id:
+            return True
+    return False;
+
+
+
 @register.filter(name='cart_product_qty')
 def cart_product_qty(product, kart):
     keys = kart.keys()

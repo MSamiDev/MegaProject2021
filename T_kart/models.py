@@ -21,6 +21,26 @@ class Product(models.Model):
     publish_date = models.DateField()
     image = models.ImageField(upload_to="T-Kart/images/Products", default="")
 
+
+    os = models.CharField(default="-", max_length=300)
+    ram = models.CharField(default="-", max_length=300)
+    dimensions = models.CharField(default="-", max_length=300)
+    batteries = models.CharField(default="-", max_length=300)
+    model = models.CharField(default="-", max_length=300)
+    wireless_comunication =models.CharField(default="-", max_length=300)
+    conectivity = models.CharField(default="-", max_length=300)
+    display = models.CharField(default="-", max_length=300)
+    camera = models.CharField(default="-", max_length=300)
+    weaight = models.CharField(default="-", max_length=300)
+    manufacturer = models.CharField(default="-", max_length=300)
+    procesor = models.CharField(default="-", max_length=300)
+    graphics =models.CharField(default="-", max_length=300)
+    ports = models.CharField(default="-", max_length=300)
+    storage = models.CharField(default="-", max_length=300)
+    colour = models.CharField(default="-", max_length=300)
+
+
+
     def __str__(self):
         return self.product_name
 
