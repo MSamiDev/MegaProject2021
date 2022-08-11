@@ -196,33 +196,8 @@
   margin: -167px 0 0 83px;
 }
 
-.u-section-2 .u-social-icons-1 {
-  white-space: nowrap;
-  min-height: 16px;
-  width: 280px;
-  min-width: 200px;
-  margin: 95px auto 0;
-}
-
 .u-section-2 .u-icon-1 {
   height: 100%;
-}
-
-.u-section-2 .u-icon-2 {
-  height: 100%;
-}
-
-.u-section-2 .u-icon-3 {
-  height: 100%;
-}
-
-.u-section-2 .u-icon-4 {
-  height: 100%;
-}
-
-.u-section-2 .u-icon-5 {
-  height: 100%;
-  color: rgb(5, 244, 183) !important;
 }
 
 .u-section-2 .u-layout-cell-2 {
@@ -240,44 +215,8 @@
   margin: 20px 62px 0 auto;
 }
 
-.u-section-2 .u-image-2 {
-  width: 227px;
-  height: 340px;
-  margin: -196px auto 0;
-}
-
 .u-section-2 .u-text-4 {
   margin: -179px 0 0 95px;
-}
-
-.u-section-2 .u-social-icons-2 {
-  white-space: nowrap;
-  min-height: 16px;
-  width: 280px;
-  min-width: 200px;
-  margin: 95px auto 0;
-}
-
-.u-section-2 .u-icon-6 {
-  height: 100%;
-}
-
-.u-section-2 .u-icon-7 {
-  height: 100%;
-}
-
-.u-section-2 .u-icon-8 {
-  height: 100%;
-}
-
-.u-section-2 .u-icon-9 {
-  height: 100%;
-  color: rgb(5, 244, 183) !important;
-}
-
-.u-section-2 .u-icon-10 {
-  height: 100%;
-  color: rgb(5, 244, 183) !important;
 }
 
 @media (max-width: 1199px) {
@@ -310,10 +249,6 @@
 
   .u-section-2 .u-layout-cell-2 {
     min-height: 428px;
-  }
-
-  .u-section-2 .u-image-2 {
-    height: 341px;
   }
 
   .u-section-2 .u-text-4 {
@@ -368,10 +303,6 @@
     margin-left: 85px;
   }
 
-  .u-section-2 .u-social-icons-1 {
-    height: 32px;
-  }
-
   .u-section-2 .u-container-layout-2 {
     padding-left: 10px;
     padding-right: 10px;
@@ -380,10 +311,6 @@
   .u-section-2 .u-text-4 {
     width: auto;
     margin-left: 85px;
-  }
-
-  .u-section-2 .u-social-icons-2 {
-    height: 32px;
   }
 }
 
@@ -404,10 +331,6 @@
     margin-left: 40px;
   }
 
-  .u-section-2 .u-social-icons-1 {
-    margin-top: 110px;
-  }
-
   .u-section-2 .u-layout-cell-2 {
     min-height: 530px;
   }
@@ -422,9 +345,5 @@
 
   .u-section-2 .u-text-4 {
     margin-left: 40px;
-  }
-
-  .u-section-2 .u-social-icons-2 {
-    margin-top: 124px;
   }
 }

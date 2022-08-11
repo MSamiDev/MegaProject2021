@@ -27,52 +27,6 @@
   margin: -142px auto 0 20px;
 }
 
-.u-section-1 .u-gallery-1 {
-  margin-top: -375px;
-  margin-bottom: 0;
-  height: 340px;
-}
-
-.u-section-1 .u-carousel-item-1 {
-  margin-right: 0;
-}
-
-.u-section-1 .u-over-slide-1 {
-  min-height: 100px;
-  padding: 10px;
-}
-
-.u-section-1 .u-carousel-item-2 {
-  margin-right: 0;
-}
-
-.u-section-1 .u-over-slide-2 {
-  min-height: 100px;
-  padding: 10px;
-}
-
-.u-section-1 .u-carousel-control-1 {
-  position: absolute;
-  left: 117px;
-  width: 40px;
-  height: 40px;
-  background-image: none;
-  right: auto;
-}
-
-.u-section-1 .u-carousel-control-2 {
-  position: absolute;
-  width: 40px;
-  height: 40px;
-  background-image: none;
-  left: auto;
-  right: 8px;
-}
-
-.u-section-1 .u-carousel-thumbnails-1 {
-  padding-right: 10px;
-}
-
 .u-section-1 .u-layout-cell-2 {
   min-height: 533px;
 }
@@ -131,10 +85,6 @@
     margin-left: 40px;
   }
 
-  .u-section-1 .u-gallery-1 {
-    margin-top: -385px;
-  }
-
   .u-section-1 .u-layout-cell-2 {
     min-height: 439px;
   }
@@ -169,10 +119,6 @@
     height: 110px;
     margin-top: -100px;
     margin-left: 37px;
-  }
-
-  .u-section-1 .u-gallery-1 {
-    margin-top: -381px;
   }
 
   .u-section-1 .u-layout-cell-2 {
@@ -274,18 +220,6 @@
   .u-section-1 .u-shape-2 {
     margin-top: -82px;
     margin-left: -22px;
-  }
-
-  .u-section-1 .u-gallery-1 {
-    margin-top: -401px;
-  }
-
-  .u-section-1 .u-carousel-control-1 {
-    left: 5px;
-  }
-
-  .u-section-1 .u-carousel-control-2 {
-    right: 5px;
   }
 
   .u-section-1 .u-layout-cell-2 {
